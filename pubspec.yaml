@@ -1,0 +1,8 @@
+name: dart-check
+description: A library for exhaustive and randomized testing of Dart properties.
+version: 0.0.1
+dependencies:
+  dart-enumerators:
+    git: https://code.google.com/p/dart-enumerators
+  unittest:
+    sdk: unittest
