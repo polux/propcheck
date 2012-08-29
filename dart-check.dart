@@ -94,11 +94,11 @@ class SmallCheck extends Check {
       final part = it.head;
       int card = part.card;
       for(int i = 0; i < card; i++) {
-        display("$counter/$total (depth $currentDepth: ${i+1}/$card)");
+        display("${counter+1}/$total (depth $currentDepth: ${i+1}/$card)");
         _Product arg = part[i];
         if (!property.property(arg)) {
           clear();
-          throw Check._errorMessage(counter, arg);
+          throw Check._errorMessage(counter + 1, arg);
         }
         counter++;
       }
@@ -140,7 +140,7 @@ class QuickCheck extends Check {
       _Product arg = part[index];
       if (!property.property(arg)) {
         clear();
-        throw Check._errorMessage(i, arg);
+        throw Check._errorMessage(i + 1, arg);
       }
     }
     clear();
