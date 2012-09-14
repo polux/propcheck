@@ -14,11 +14,11 @@
 
 // Author: Paul Brauner (polux@google.com)
 
-#library('dart-check.dart');
+#library('dart_check.dart');
 
-#import('package:dart-enumerators/enumerators.dart');
 #import('dart:io');
 #import('dart:math');
+#import('package:dart_enumerators/enumerators.dart');
 
 #source('products.dart');
 
