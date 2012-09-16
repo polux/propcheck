@@ -16,8 +16,8 @@
 
 #library('demo');
 
-#import('package:dart_check/dart_check.dart');
-#import('package:dart_enumerators/combinators.dart');
+#import('package:dart-check/dart_check.dart');
+#import('package:dart-enumerators/combinators.dart');
 #import('package:unittest/unittest.dart');
 
 // Defines append and reverse.
@@ -26,7 +26,7 @@
 // We turn dart unittest's listEquals into a boolean function.
 bool listEquals(List xs, List ys) {
   try { Expect.listEquals(xs, ys); return true; }
-  catch (var _) { return false; }
+  catch (_) { return false; }
 }
 
 // This should hold for any sound implementation of reverse and append.

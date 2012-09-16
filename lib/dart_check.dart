@@ -18,9 +18,9 @@
 
 #import('dart:io');
 #import('dart:math');
-#import('package:dart_enumerators/enumerators.dart');
+#import('package:dart-enumerators/enumerators.dart');
 
-#source('products.dart');
+#source('src/products.dart');
 
 class Property {
   final Enumeration<_Product> enum;
