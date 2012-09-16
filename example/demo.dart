@@ -17,7 +17,7 @@
 #library('demo');
 
 #import('package:dart-check/dart_check.dart');
-#import('package:dart-enumerators/combinators.dart');
+#import('package:dart-enumerators/combinators.dart', prefix: 'c');
 #import('package:unittest/unittest.dart');
 
 // Defines append and reverse.
@@ -43,7 +43,6 @@ bool bad(List xs, List ys) =>
 
 main() {
   // We define an enumeration of lists of booleans.
-  final c = new Combinators();
   final boolsLists = c.listsOf(c.bools);
 
   // We declare the properties '∀x:List<bool>, ∀y:List<bool>, good(x,y)' and
