@@ -3,8 +3,6 @@ description: A library for exhaustive and randomized testing of Dart properties.
 version: 0.0.1
 dependencies:
   dart-enumerators:
-    git:
-      url: https://code.google.com/p/dart-enumerators/
-      ref: new-layout
+    git: https://code.google.com/p/dart-enumerators/
   unittest:
     sdk: unittest
