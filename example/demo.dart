@@ -16,8 +16,8 @@
 
 #library('demo');
 
-#import('package:dart-check/dart_check.dart');
-#import('package:dart-enumerators/combinators.dart', prefix: 'c');
+#import('package:dart_check/dart_check.dart');
+#import('package:dart_enumerators/combinators.dart', prefix: 'c');
 #import('package:unittest/unittest.dart');
 
 // Defines append and reverse.

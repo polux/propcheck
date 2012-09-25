@@ -18,7 +18,7 @@
 
 #import('dart:io');
 #import('dart:math');
-#import('package:dart-enumerators/enumerators.dart');
+#import('package:dart_enumerators/enumerators.dart');
 
 #source('src/products.dart');
 
