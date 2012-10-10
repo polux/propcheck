@@ -14,13 +14,13 @@
 
 // Author: Paul Brauner (polux@google.com)
 
-#library('dart_check');
+library dart_check;
 
-#import('dart:io');
-#import('dart:math');
-#import('package:dart_enumerators/enumerators.dart');
+import 'dart:io';
+import 'dart:math';
+import 'package:dart_enumerators/enumerators.dart';
 
-#source('src/products.dart');
+part 'src/products.dart';
 
 class Property {
   final Enumeration<_Product> enum;

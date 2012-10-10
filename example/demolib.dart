@@ -14,6 +14,8 @@
 
 // Author: Paul Brauner (polux@google.com)
 
+part of demo;
+
 List reverse(List xs) {
   List res = [];
   for (int i = xs.length - 1; i >= 0; i--) {

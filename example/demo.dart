@@ -14,14 +14,14 @@
 
 // Author: Paul Brauner (polux@google.com)
 
-#library('demo');
+library demo;
 
-#import('package:dart_check/dart_check.dart');
-#import('package:dart_enumerators/combinators.dart', prefix: 'c');
-#import('package:unittest/unittest.dart');
+import 'package:dart_check/dart_check.dart';
+import 'package:dart_enumerators/combinators.dart' as c;
+import 'package:unittest/unittest.dart';
 
 // Defines append and reverse.
-#source('demolib.dart');
+part 'demolib.dart';
 
 // We turn dart unittest's listEquals into a boolean function.
 bool listEquals(List xs, List ys) {
