@@ -1,0 +1,224 @@
+        <!DOCTYPE html>
+        <html manifest="/appcache.manifest">
+        <head>
+                <meta charset="utf-8">
+        <title>SmallCheck class / dart_check Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="dart_check" data-type="SmallCheck">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../dart_check.html">dart_check</a> &rsaquo; <a href="../dart_check/SmallCheck.html">SmallCheck</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>SmallCheck</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../dart_check/Check.html">Check</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>SmallCheck</strong></span></p>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="SmallCheck">
+<button class="show-code">Code</button>
+new <strong>SmallCheck</strong>([depth = 4, quiet = false]) <a class="anchor-link" href="#SmallCheck"
+              title="Permalink to SmallCheck.SmallCheck">#</a></h4>
+<div class="doc">
+<pre class="source">
+SmallCheck([depth = 4, quiet = false])
+    : this.depth = depth
+    , super(quiet);
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="depth">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_core/int.html">int</a>         <strong>depth</strong> <a class="anchor-link"
+            href="#depth"
+            title="Permalink to SmallCheck.depth">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final int depth;
+</pre>
+</div>
+</div>
+<div class="field inherited"><h4 id="quiet">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>quiet</strong> <a class="anchor-link"
+            href="#quiet"
+            title="Permalink to SmallCheck.quiet">#</a>
+        </h4>
+        <div class="inherited-from">inherited from <a href="../dart_check/Check.html">Check</a> </div><div class="doc">
+<pre class="source">
+final bool quiet;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to SmallCheck.operator ==">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="check">
+<button class="show-code">Code</button>
+void <strong>check</strong>(<a href="../dart_check/Property.html">Property</a> property) <a class="anchor-link" href="#check"
+              title="Permalink to SmallCheck.check">#</a></h4>
+<div class="doc">
+<pre class="source">
+void check(Property property) {
+  LazyList&lt;Finite&gt; parts = property.enum.parts.take(depth + 1);
+  int total = 0;
+  for(var it = parts; !it.isEmpty(); it = it.tail) {
+    total += it.head.card;
+  }
+
+  int counter = 0;
+  int currentDepth = 0;
+  for(var it = parts; !it.isEmpty(); it = it.tail) {
+    final part = it.head;
+    int card = part.card;
+    for(int i = 0; i &lt; card; i++) {
+      display("${counter+1}/$total (depth $currentDepth: ${i+1}/$card)");
+      _Product arg = part[i];
+      if (!property.property(arg)) {
+        clear();
+        throw Check._errorMessage(counter + 1, arg);
+      }
+      counter++;
+    }
+    currentDepth++;
+  }
+  clear();
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="clear">
+<button class="show-code">Code</button>
+void <strong>clear</strong>() <a class="anchor-link" href="#clear"
+              title="Permalink to SmallCheck.clear">#</a></h4>
+<div class="inherited-from">inherited from <a href="../dart_check/Check.html">Check</a> </div><div class="doc">
+<pre class="source">
+void clear() =&gt; display('');
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="display">
+<button class="show-code">Code</button>
+void <strong>display</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> message) <a class="anchor-link" href="#display"
+              title="Permalink to SmallCheck.display">#</a></h4>
+<div class="inherited-from">inherited from <a href="../dart_check/Check.html">Check</a> </div><div class="doc">
+<pre class="source">
+void display(String message) {
+  if (!quiet) {
+    stdout.writeString("\r\u001b[K$message");
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a> <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to SmallCheck.hashCode">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> name, <a href="http://api.dartlang.org/dart_core/List.html">List</a> args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to SmallCheck.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/Type.html">Type</a> <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to SmallCheck.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="toString">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to SmallCheck.toString">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p>Returns a string representation of this object.</p>
+<pre class="source">
+external String toString();
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-10-10 21:39:49.829</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

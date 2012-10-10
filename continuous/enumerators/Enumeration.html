@@ -1,0 +1,291 @@
+        <!DOCTYPE html>
+        <html manifest="/appcache.manifest">
+        <head>
+                <meta charset="utf-8">
+        <title>Enumeration&lt;A&gt; class / enumerators Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="enumerators" data-type="Enumeration&amp;lt;A&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../enumerators.html">enumerators</a> &rsaquo; <a href="../enumerators/Enumeration.html">Enumeration&lt;A&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>Enumeration&lt;A&gt;</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>An enumeration of finite parts of A.</p>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Enumeration">
+<button class="show-code">Code</button>
+new <strong>Enumeration</strong>(<a href="../enumerators/LazyList.html">LazyList</a>&lt;<a href="../enumerators/Finite.html">Finite</a>&lt;<a href="../enumerators/Enumeration.html">A</a>&gt;&gt; parts) <a class="anchor-link" href="#Enumeration"
+              title="Permalink to Enumeration&lt;A&gt;.Enumeration">#</a></h4>
+<div class="doc">
+<pre class="source">
+Enumeration(this.parts);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Enumeration.empty">
+<button class="show-code">Code</button>
+factory <strong>Enumeration.empty</strong>() <a class="anchor-link" href="#Enumeration.empty"
+              title="Permalink to Enumeration&lt;A&gt;.Enumeration.empty">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory Enumeration.empty() =&gt; new Enumeration(new LazyList.empty());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Enumeration.fix">
+<button class="show-code">Code</button>
+factory <strong>Enumeration.fix</strong>(<a href="../enumerators/Enumeration.html">Enumeration</a> f(Enumeration)) <a class="anchor-link" href="#Enumeration.fix"
+              title="Permalink to Enumeration&lt;A&gt;.Enumeration.fix">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory Enumeration.fix(Enumeration f(Enumeration)) {
+  final enum = new Enumeration(null);
+  final result = f(enum);
+  enum.parts = result.parts;
+  return result;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Enumeration.singleton">
+<button class="show-code">Code</button>
+factory <strong>Enumeration.singleton</strong>(<a href="../enumerators/Enumeration.html">A</a> x) <a class="anchor-link" href="#Enumeration.singleton"
+              title="Permalink to Enumeration&lt;A&gt;.Enumeration.singleton">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory Enumeration.singleton(A x) =&gt;
+    new Enumeration(new LazyList.singleton(new Finite.singleton(x)));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="Enumeration._fromGen">
+<button class="show-code">Code</button>
+factory <strong>Enumeration._fromGen</strong>(<a href="../enumerators/Pair.html">Pair</a>&lt;<a href="../enumerators/Finite.html">Finite</a>&lt;<a href="../enumerators/Enumeration.html">A</a>&gt;, <a href="../enumerators/LazyList.html">LazyList</a>&lt;<a href="../enumerators/Finite.html">Finite</a>&lt;<a href="../enumerators/Enumeration.html">A</a>&gt;&gt;&gt; gen()) <a class="anchor-link" href="#Enumeration._fromGen"
+              title="Permalink to Enumeration&lt;A&gt;.Enumeration._fromGen">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory Enumeration._fromGen(Pair&lt;Finite&lt;A&gt;, LazyList&lt;Finite&lt;A&gt;&gt;&gt; gen()) =&gt;
+    new Enumeration(new LazyList(gen));
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="parts">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">LazyList</a>&lt;<a href="../enumerators/Finite.html">Finite</a>&lt;<a href="../enumerators/Enumeration.html">A</a>&gt;&gt;         <strong>parts</strong> <a class="anchor-link"
+            href="#parts"
+            title="Permalink to Enumeration&lt;A&gt;.parts">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+LazyList&lt;Finite&lt;A&gt;&gt; parts;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="*">
+<button class="show-code">Code</button>
+<a href="../enumerators/Enumeration.html">Enumeration</a>&lt;<a href="../enumerators/Pair.html">Pair</a>&gt; <strong>operator *</strong>(<a href="../enumerators/Enumeration.html">Enumeration</a>&lt;<a href="../enumerators/Enumeration.html">A</a>&gt; e) <a class="anchor-link" href="#*"
+              title="Permalink to Enumeration&lt;A&gt;.operator *">#</a></h4>
+<div class="doc">
+<p>Cartesian product.</p>
+<pre class="source">
+Enumeration&lt;Pair&gt; operator *(Enumeration&lt;A&gt; e) =&gt;
+    new Enumeration&lt;Pair&gt;._fromGen(() =&gt;
+        _prod(this.parts, _reversals(e.parts)).gen());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="+">
+<button class="show-code">Code</button>
+<a href="../enumerators/Enumeration.html">Enumeration</a>&lt;<a href="../enumerators/Enumeration.html">A</a>&gt; <strong>operator +</strong>(<a href="../enumerators/Enumeration.html">Enumeration</a>&lt;<a href="../enumerators/Enumeration.html">A</a>&gt; e) <a class="anchor-link" href="#+"
+              title="Permalink to Enumeration&lt;A&gt;.operator +">#</a></h4>
+<div class="doc">
+<p>Disjoint union (it is up to the user to make sure that operands are
+disjoint).</p>
+<pre class="source">
+Enumeration&lt;A&gt; operator +(Enumeration&lt;A&gt; e) =&gt;
+    new Enumeration&lt;A&gt;._fromGen(() =&gt; _zipPlus(this.parts, e.parts).gen());
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to Enumeration&lt;A&gt;.operator ==">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="[]">
+<button class="show-code">Code</button>
+<a href="../enumerators/Enumeration.html">A</a> <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> i) <a class="anchor-link" href="#[]"
+              title="Permalink to Enumeration&lt;A&gt;.operator []">#</a></h4>
+<div class="doc">
+<pre class="source">
+A operator [](int i) {
+  var ps = parts;
+  var it = i;
+  while (true) {
+    if (ps.isEmpty()) throw "index out of range";
+    if (it &lt; ps.head.card) return ps.head[it];
+    it = it - ps.head.card;
+    ps = ps.tail;
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="apply">
+<button class="show-code">Code</button>
+<a href="../enumerators/Enumeration.html">Enumeration</a> <strong>apply</strong>(<a href="../enumerators/Enumeration.html">Enumeration</a> e) <a class="anchor-link" href="#apply"
+              title="Permalink to Enumeration&lt;A&gt;.apply">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="../enumerators/Enumeration.html#Enumeration">Enumeration</a> is an applicative functor.</p>
+<pre class="source">
+Enumeration apply(Enumeration e) =&gt;
+    (this * e).map((pair) =&gt; (pair.fst as Function)(pair.snd));
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a> <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to Enumeration&lt;A&gt;.hashCode">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="map">
+<button class="show-code">Code</button>
+<a href="../enumerators/Enumeration.html">Enumeration</a> <strong>map</strong>(f(<a href="../enumerators/Enumeration.html">A</a> x)) <a class="anchor-link" href="#map"
+              title="Permalink to Enumeration&lt;A&gt;.map">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="../enumerators/Enumeration.html#Enumeration">Enumeration</a> is a functor.</p>
+<pre class="source">
+Enumeration map(f(A x)) =&gt;
+    new Enumeration._fromGen(() =&gt; parts.map((p) =&gt; p.map(f)).gen());
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> name, <a href="http://api.dartlang.org/dart_core/List.html">List</a> args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to Enumeration&lt;A&gt;.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="pay">
+<button class="show-code">Code</button>
+<a href="../enumerators/Enumeration.html">Enumeration</a>&lt;<a href="../enumerators/Enumeration.html">A</a>&gt; <strong>pay</strong>() <a class="anchor-link" href="#pay"
+              title="Permalink to Enumeration&lt;A&gt;.pay">#</a></h4>
+<div class="doc">
+<p>Pays for one recursive call.</p>
+<pre class="source">
+Enumeration&lt;A&gt; pay() =&gt; new Enumeration&lt;A&gt;._fromGen(
+    () =&gt; new Pair(new Finite.empty(), this.parts));
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/Type.html">Type</a> <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to Enumeration&lt;A&gt;.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toLazyList">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">LazyList</a>&lt;<a href="../enumerators/Enumeration.html">A</a>&gt; <strong>toLazyList</strong>() <a class="anchor-link" href="#toLazyList"
+              title="Permalink to Enumeration&lt;A&gt;.toLazyList">#</a></h4>
+<div class="doc">
+<pre class="source">
+LazyList&lt;A&gt; toLazyList() =&gt;
+    parts.map((f) =&gt; f.toLazyList()).concat();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<button class="show-code">Code</button>
+<strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to Enumeration&lt;A&gt;.toString">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Returns a string representation of this object.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+toString() =&gt; "Enum $parts";
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-10-10 21:39:49.964</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        

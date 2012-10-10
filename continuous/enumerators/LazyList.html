@@ -1,0 +1,387 @@
+        <!DOCTYPE html>
+        <html manifest="/appcache.manifest">
+        <head>
+                <meta charset="utf-8">
+        <title>LazyList&lt;A&gt; class / enumerators Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="enumerators" data-type="LazyList&amp;lt;A&amp;gt;">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../enumerators.html">enumerators</a> &rsaquo; <a href="../enumerators/LazyList.html">LazyList&lt;A&gt;</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+</div>
+<div class="content">
+        <h2><strong>LazyList&lt;A&gt;</strong>
+          class
+        </h2>
+        
+<button id="show-inherited" class="show-inherited">Hide inherited</button>
+<div class="doc">
+<p>A lazy list, possibly infinite.</p>
+</div>
+<div>
+<h3>Constructors</h3>
+<div class="method"><h4 id="LazyList">
+<button class="show-code">Code</button>
+new <strong>LazyList</strong>(<a href="../enumerators/Pair.html">Pair</a>&lt;<a href="../enumerators/LazyList.html">A</a>, <a href="../enumerators/LazyList.html">LazyList</a>&lt;<a href="../enumerators/LazyList.html">A</a>&gt;&gt; gen()) <a class="anchor-link" href="#LazyList"
+              title="Permalink to LazyList&lt;A&gt;.LazyList">#</a></h4>
+<div class="doc">
+<pre class="source">
+LazyList(Pair&lt;A, LazyList&lt;A&gt;&gt; gen()) : this.gen = gen;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="LazyList.empty">
+<button class="show-code">Code</button>
+factory <strong>LazyList.empty</strong>() <a class="anchor-link" href="#LazyList.empty"
+              title="Permalink to LazyList&lt;A&gt;.LazyList.empty">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory LazyList.empty() =&gt; new LazyList(null);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="LazyList.repeat">
+<button class="show-code">Code</button>
+factory <strong>LazyList.repeat</strong>(<a href="../enumerators/LazyList.html">A</a> x) <a class="anchor-link" href="#LazyList.repeat"
+              title="Permalink to LazyList&lt;A&gt;.LazyList.repeat">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory LazyList.repeat(A x) =&gt;
+    new LazyList(() =&gt; new Pair(x, new LazyList.repeat(x)));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="LazyList.singleton">
+<button class="show-code">Code</button>
+factory <strong>LazyList.singleton</strong>(<a href="../enumerators/LazyList.html">A</a> x) <a class="anchor-link" href="#LazyList.singleton"
+              title="Permalink to LazyList&lt;A&gt;.LazyList.singleton">#</a></h4>
+<div class="doc">
+<pre class="source">
+factory LazyList.singleton(A x) =&gt;
+    new LazyList(() =&gt; new Pair(x, new LazyList.empty()));
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Fields</h3>
+<div class="field"><h4 id="gen">
+<button class="show-code">Code</button>
+final <a href="http://api.dartlang.org/dart_core/Function.html">Function</a>         <strong>gen</strong> <a class="anchor-link"
+            href="#gen"
+            title="Permalink to LazyList&lt;A&gt;.gen">#</a>
+        </h4>
+        <div class="doc">
+<pre class="source">
+final Function gen;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Methods</h3>
+<div class="method"><h4 id="*">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">LazyList</a> <strong>operator *</strong>(<a href="../enumerators/LazyList.html">LazyList</a> s) <a class="anchor-link" href="#*"
+              title="Permalink to LazyList&lt;A&gt;.operator *">#</a></h4>
+<div class="doc">
+<p>Cartesian product.</p>
+<pre class="source">
+LazyList operator *(LazyList s) =&gt;
+    this.map((x) =&gt; s.map((y) =&gt; new Pair(x,y))).concat();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="+">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">LazyList</a> <strong>operator +</strong>(<a href="../enumerators/LazyList.html">LazyList</a> s) <a class="anchor-link" href="#+"
+              title="Permalink to LazyList&lt;A&gt;.operator +">#</a></h4>
+<div class="doc">
+<p>
+<span class="param">s</span> appended to <code>this</code>.</p>
+<pre class="source">
+LazyList operator +(LazyList s) =&gt; this.isEmpty()
+    ? s
+    : new LazyList(() =&gt; new Pair(head, tail + s));
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="==">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
+              title="Permalink to LazyList&lt;A&gt;.operator ==">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p>The equality operator.</p>
+<p>The default behavior for all <code>Object</code>s is to return true if and
+only if <code>this</code> and 
+<span class="param">other</span> are the same object.</p>
+<p>If a subclass overrides the equality operator it should override
+the <code>hashCode</code> method as well to maintain consistency.</p>
+<pre class="source">
+bool operator ==(other) =&gt; identical(this, other);
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="[]">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">A</a> <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> index) <a class="anchor-link" href="#[]"
+              title="Permalink to LazyList&lt;A&gt;.operator []">#</a></h4>
+<div class="doc">
+<p>Linear indexing.</p>
+<pre class="source">
+A operator[](int index) {
+  getAt(LazyList l, int i) {
+    if (l.isEmpty()) throw "index out of range";
+    if (i == 0) return l.head;
+    return getAt(l.tail, i - 1);
+  }
+  return getAt(this, index);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="apply">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">LazyList</a> <strong>apply</strong>(<a href="../enumerators/LazyList.html">LazyList</a> s) <a class="anchor-link" href="#apply"
+              title="Permalink to LazyList&lt;A&gt;.apply">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="../enumerators/LazyList.html#LazyList">LazyList</a> is an applicative functor.</p>
+<pre class="source">
+LazyList apply(LazyList s) =&gt; (this * s).map((pair) =&gt; pair.fst(pair.snd));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="concat">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">LazyList</a> <strong>concat</strong>() <a class="anchor-link" href="#concat"
+              title="Permalink to LazyList&lt;A&gt;.concat">#</a></h4>
+<div class="doc">
+<p>Concatenates this, Assuming <code> A = Stream&lt;Stream&lt;B&gt;&gt; </code>.</p>
+<pre class="source">
+LazyList concat() =&gt; this.isEmpty()
+    ? new LazyList.empty()
+    : new LazyList(() =&gt; (this.head + this.tail.concat()).gen());
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="foldLeft">
+<button class="show-code">Code</button>
+<strong>foldLeft</strong>(zero, plus) <a class="anchor-link" href="#foldLeft"
+              title="Permalink to LazyList&lt;A&gt;.foldLeft">#</a></h4>
+<div class="doc">
+<p><code> [a,b,c].foldLeft(zero, +) </code> is <code> zero + a + b + c </code>.</p>
+<pre class="source">
+foldLeft(zero, plus) {
+  var result = zero;
+  this.forEach((x) { result = plus(result, x); });
+  return result;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="forEach">
+<button class="show-code">Code</button>
+void <strong>forEach</strong>(f(<a href="../enumerators/LazyList.html">A</a> x)) <a class="anchor-link" href="#forEach"
+              title="Permalink to LazyList&lt;A&gt;.forEach">#</a></h4>
+<div class="doc">
+<pre class="source">
+void forEach(f(A x)) {
+  LazyList&lt;A&gt; s = this;
+  while (!s.isEmpty()) {
+    f(s.head);
+    s = s.tail;
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="hashCode">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/int.html">int</a> <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
+              title="Permalink to LazyList&lt;A&gt;.hashCode">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p>Get a hash code for this object.</p>
+<p>All objects have hash codes. Hash codes are guaranteed to be the
+same for objects that are equal when compared using the equality
+operator <code>==</code>. Other than that there are no guarantees about
+the hash codes. They will not be consistent between runs and
+there are no distribution guarantees.</p>
+<p>If a subclass overrides <code>hashCode</code> it should override the
+equality operator as well to maintain consistency.</p>
+<pre class="source">
+external int hashCode();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="head">
+<button class="show-code">Code</button>
+<strong>get head</strong>() <a class="anchor-link" href="#head"
+              title="Permalink to LazyList&lt;A&gt;.get head">#</a></h4>
+<div class="doc">
+<pre class="source">
+get head {
+  if (_cachedHead == null) _force();
+  return _cachedHead;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="isEmpty">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>isEmpty</strong>() <a class="anchor-link" href="#isEmpty"
+              title="Permalink to LazyList&lt;A&gt;.isEmpty">#</a></h4>
+<div class="doc">
+<pre class="source">
+bool isEmpty() =&gt; gen == null;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="map">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">LazyList</a> <strong>map</strong>(f(<a href="../enumerators/LazyList.html">A</a> x)) <a class="anchor-link" href="#map"
+              title="Permalink to LazyList&lt;A&gt;.map">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="../enumerators/LazyList.html#LazyList">LazyList</a> is a functor.</p>
+<pre class="source">
+LazyList map(f(A x)) =&gt; this.isEmpty()
+    ? new LazyList.empty()
+    : new LazyList(() =&gt; new Pair(f(head), tail.map(f)));
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="noSuchMethod">
+<button class="show-code">Code</button>
+<strong>noSuchMethod</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> name, <a href="http://api.dartlang.org/dart_core/List.html">List</a> args) <a class="anchor-link" href="#noSuchMethod"
+              title="Permalink to LazyList&lt;A&gt;.noSuchMethod">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
+on an object. The name of the method and the arguments of the
+invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
+returns a value, that value becomes the result of the original
+invocation.</p>
+<p>The default behavior of <code>noSuchMethod</code> is to throw a
+<code>noSuchMethodError</code>.</p>
+<pre class="source">
+external Dynamic noSuchMethod(String name, List args);
+</pre>
+</div>
+</div>
+<div class="method inherited"><h4 id="runtimeType">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/Type.html">Type</a> <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
+              title="Permalink to LazyList&lt;A&gt;.get runtimeType">#</a></h4>
+<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
+<p>A representation of the runtime type of the object.</p>
+<pre class="source">
+external Type get runtimeType;
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="tail">
+<button class="show-code">Code</button>
+<strong>get tail</strong>() <a class="anchor-link" href="#tail"
+              title="Permalink to LazyList&lt;A&gt;.get tail">#</a></h4>
+<div class="doc">
+<pre class="source">
+get tail {
+  if (_cachedTail == null) _force();
+  return _cachedTail;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="tails">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">LazyList</a>&lt;<a href="../enumerators/LazyList.html">LazyList</a>&gt; <strong>tails</strong>() <a class="anchor-link" href="#tails"
+              title="Permalink to LazyList&lt;A&gt;.tails">#</a></h4>
+<div class="doc">
+<pre class="source">
+LazyList&lt;LazyList&gt; tails() =&gt; this.isEmpty()
+    ? new LazyList.singleton(new LazyList.empty())
+    : new LazyList(() =&gt; new Pair(this, this.tail.tails()));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="take">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">LazyList</a> <strong>take</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> length) <a class="anchor-link" href="#take"
+              title="Permalink to LazyList&lt;A&gt;.take">#</a></h4>
+<div class="doc">
+<pre class="source">
+LazyList take(int length) {
+  aux(LazyList rest, int n) =&gt; (n == 0 || rest.isEmpty())
+      ? new LazyList.empty()
+      : new LazyList(() =&gt; new Pair(rest.head, aux(rest.tail, n - 1)));
+  return aux(this, length);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toList">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../enumerators/LazyList.html">A</a>&gt; <strong>toList</strong>() <a class="anchor-link" href="#toList"
+              title="Permalink to LazyList&lt;A&gt;.toList">#</a></h4>
+<div class="doc">
+<pre class="source">
+List&lt;A&gt; toList() {
+  final res = [];
+  this.forEach((A x) { res.add(x); });
+  return res;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="toString">
+<button class="show-code">Code</button>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
+              title="Permalink to LazyList&lt;A&gt;.toString">#</a></h4>
+<div class="doc">
+<div class="inherited">
+<p>Returns a string representation of this object.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
+<pre class="source">
+String toString() =&gt; toList().toString();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="zipWith">
+<button class="show-code">Code</button>
+<a href="../enumerators/LazyList.html">LazyList</a> <strong>zipWith</strong>(f(x, y), <a href="../enumerators/LazyList.html">LazyList</a> ys) <a class="anchor-link" href="#zipWith"
+              title="Permalink to LazyList&lt;A&gt;.zipWith">#</a></h4>
+<div class="doc">
+<p><code> [a,b,c,d].zipWith(f, [x,y,z]) </code> is <code> [f(a,z), f(b,y), f(c,z)] </code>.</p>
+<pre class="source">
+LazyList zipWith(f(x,y), LazyList ys) =&gt; (this.isEmpty() || ys.isEmpty())
+    ? new LazyList.empty()
+    : new LazyList(() =&gt;
+        new Pair(f(this.head, ys.head), this.tail.zipWith(f, ys.tail)));
+</pre>
+</div>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-10-10 21:39:49.942</div>
+        </div>
+        <script async src="../client-live-nav.js"></script>
+        </body></html>
+        
