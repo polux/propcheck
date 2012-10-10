@@ -14,7 +14,7 @@
 
 // Author: Paul Brauner (polux@google.com)
 
-part of demo;
+// part of demo;
 
 List reverse(List xs) {
   List res = [];

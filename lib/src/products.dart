@@ -14,7 +14,7 @@
 
 // Author: Paul Brauner (polux@google.com)
 
-part of dart_check;
+// part of dart_check;
 
 abstract class _Product {
   abstract List<String> toStrings();
