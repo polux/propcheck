@@ -14,7 +14,7 @@
 
 // Author: Paul Brauner (polux@google.com)
 
-#library('dart_check.dart');
+#library('dart_check');
 
 #import('dart:io');
 #import('dart:math');
