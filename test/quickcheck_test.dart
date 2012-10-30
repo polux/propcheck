@@ -27,7 +27,7 @@ void quickCheckPerformsCheck() {
     return true;
   }
   new QuickCheck().check(forall(c.ints, test));
-  expect(called, isTrue, reason: 'test(int n) has not been called');
+  expect(called, isTrue, reason: "test wasn't called");
 }
 
 void falseTriggersException() {
@@ -35,11 +35,35 @@ void falseTriggersException() {
     return false;
   }
   expect(() => new QuickCheck().check(forall(c.ints, test)),
-         throwsA(new isInstanceOf<String>()),
-         reason: 'expected exception');
+         throwsA(new isInstanceOf<String>()));
+}
+
+void quickCheckHonorsMaxSize() {
+  final collected = new Set<int>();
+  bool test(int n) {
+    collected.add(n);
+    return true;
+  }
+  new QuickCheck(maxSize: 100, quiet: true).check(forall(c.nats, test));
+  for (int n in collected) {
+    expect(n, lessThanOrEqualTo(100));
+  }
+}
+
+void quickCheckHonorsMaxSuccesses() {
+  int counter = 0;
+  bool test(int n) {
+    counter++;
+    return true;
+  }
+  new QuickCheck(maxSuccesses: 100, quiet: true).check(forall(c.nats, test));
+  expect(counter, equals(100),
+         reason: "test wasn't called maxSuccesses times");
 }
 
 void main() {
   test('QuickCheck performs check', quickCheckPerformsCheck);
   test('QuickCheck throws exception on false', falseTriggersException);
+  test('QuickCheck honors maxSize', quickCheckHonorsMaxSize);
+  test('QuickCheck honors maxSuccesses', quickCheckHonorsMaxSuccesses);
 }
