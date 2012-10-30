@@ -14,8 +14,6 @@
 
 // Author: Paul Brauner (polux@google.com)
 
-library test;
-
 import 'package:dart_check/dart_check.dart';
 import 'package:dart_enumerators/combinators.dart' as c;
 import 'package:dart_enumerators/enumerators.dart' as e;
