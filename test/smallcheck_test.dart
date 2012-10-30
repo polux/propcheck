@@ -20,17 +20,27 @@ import 'package:dart_check/dart_check.dart';
 import 'package:dart_enumerators/combinators.dart' as c;
 import 'package:unittest/unittest.dart';
 
-void testSmallCheckPerformsCheck() {
+void smallCheckPerformsCheck() {
   bool called = false;
   test(int n) {
     called = true;
     return true;
   }
   new SmallCheck().check(forall(c.ints, test));
-  expect(called, true, "test(int n) has not been called");
+  expect(called, isTrue, reason: 'test(int n) has not been called');
+}
+
+void falseTriggersException() {
+  bool test(int n) {
+    return false;
+  }
+  expect(() => new SmallCheck().check(forall(c.ints, test)),
+         throwsA(new isInstanceOf<String>()),
+         reason: 'expected exception');
 }
 
 void main() {
-  test('SmallCheck performs check', testSmallCheckPerformsCheck);
+  test('SmallCheck performs check', smallCheckPerformsCheck);
+  test('SmallCheck throws exception on false', falseTriggersException);
 }
 

@@ -20,16 +20,26 @@ import 'package:dart_check/dart_check.dart';
 import 'package:dart_enumerators/combinators.dart' as c;
 import 'package:unittest/unittest.dart';
 
-void testQuickCheckPerformsCheck() {
+void quickCheckPerformsCheck() {
   bool called = false;
-  test(int n) {
+  bool test(int n) {
     called = true;
     return true;
   }
   new QuickCheck().check(forall(c.ints, test));
-  expect(called, true, "test(int n) has not been called");
+  expect(called, isTrue, reason: 'test(int n) has not been called');
+}
+
+void falseTriggersException() {
+  bool test(int n) {
+    return false;
+  }
+  expect(() => new QuickCheck().check(forall(c.ints, test)),
+         throwsA(new isInstanceOf<String>()),
+         reason: 'expected exception');
 }
 
 void main() {
-  test('QuickCheck performs check', testQuickCheckPerformsCheck);
+  test('QuickCheck performs check', quickCheckPerformsCheck);
+  test('QuickCheck throws exception on false', falseTriggersException);
 }
