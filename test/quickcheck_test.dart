@@ -18,6 +18,7 @@ library test;
 
 import 'package:dart_check/dart_check.dart';
 import 'package:dart_enumerators/combinators.dart' as c;
+import 'package:dart_enumerators/enumerators.dart' as e;
 import 'package:unittest/unittest.dart';
 
 void quickCheckPerformsCheck() {
@@ -50,7 +51,7 @@ void quickCheckHonorsMaxSize() {
   }
 }
 
-void quickCheckHonorsMaxSuccesses() {
+void quickCheckHonorsMaxSuccesses1() {
   int counter = 0;
   bool test(int n) {
     counter++;
@@ -61,9 +62,54 @@ void quickCheckHonorsMaxSuccesses() {
          reason: "test wasn't called maxSuccesses times");
 }
 
+void quickCheckHonorsMaxSuccesses2() {
+  // represents the enumeration { 0: [42, 43], 1: [44] }
+  final enum = e.singleton(42)
+             + e.singleton(43)
+             + e.singleton(44).pay();
+
+  int counter = 0;
+  bool test(int n) {
+    counter++;
+    return true;
+  }
+  new QuickCheck(maxSuccesses: 100, quiet: true).check(forall(enum, test));
+  expect(counter, equals(2),
+         reason: "test wasn't called 2 times");
+}
+
+void maxSizeSupersedesMaxSuccesses() {
+  int counter = 0;
+  bool test(int n) {
+    counter++;
+    return true;
+  }
+  new QuickCheck(maxSize: 50, maxSuccesses: 100, quiet: true)
+      .check(forall(c.ints, test));
+  expect(counter, equals(51),
+         reason: "test wasn't called 50 times");
+}
+
+void quickCheckIsMonotonous() {
+  final collected = <String>[];
+  bool test(String s) {
+    collected.add(s);
+    return true;
+  }
+  new QuickCheck(maxSize: 50, quiet: true).check(forall(c.strings, test));
+  for(int i = 0; i < collected.length - 2; i++) {
+      expect(collected[i].length, lessThan(collected[i+1].length));
+  }
+}
+
 void main() {
   test('QuickCheck performs check', quickCheckPerformsCheck);
   test('QuickCheck throws exception on false', falseTriggersException);
   test('QuickCheck honors maxSize', quickCheckHonorsMaxSize);
-  test('QuickCheck honors maxSuccesses', quickCheckHonorsMaxSuccesses);
+  test('QuickCheck honors maxSuccesses on infinite enumerations',
+       quickCheckHonorsMaxSuccesses1);
+  test('QuickCheck honors maxSuccesses on finite enumerations',
+       quickCheckHonorsMaxSuccesses2);
+  test('maxSize supersedes maxSuccesses', maxSizeSupersedesMaxSuccesses);
+  test('QuickCheck is monotonous', quickCheckIsMonotonous);
 }
