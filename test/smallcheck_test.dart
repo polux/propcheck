@@ -39,7 +39,7 @@ void falseTriggersException() {
 void smallCheckIsExhaustive() {
   final collected = new Set<int>();
   final expected = new Set<int>();
-  for (int i = 0; i < 100; i++) expected.add(i);
+  for (int i = 0; i <= 100; i++) expected.add(i);
   bool test(int n) {
     collected.add(n);
     return true;

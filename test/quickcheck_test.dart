@@ -49,18 +49,7 @@ void quickCheckHonorsMaxSize() {
   }
 }
 
-void quickCheckHonorsMaxSuccesses1() {
-  int counter = 0;
-  bool test(int n) {
-    counter++;
-    return true;
-  }
-  new QuickCheck(maxSuccesses: 100, quiet: true).check(forall(c.nats, test));
-  expect(counter, equals(100),
-         reason: "test wasn't called maxSuccesses times");
-}
-
-void quickCheckHonorsMaxSuccesses2() {
+void quickCheckHonorsMaxSize2() {
   // represents the enumeration { 0: [42, 43], 1: [44] }
   final enum = e.singleton(42)
              + e.singleton(43)
@@ -74,18 +63,6 @@ void quickCheckHonorsMaxSuccesses2() {
   new QuickCheck(maxSuccesses: 100, quiet: true).check(forall(enum, test));
   expect(counter, equals(2),
          reason: "test wasn't called 2 times");
-}
-
-void maxSizeSupersedesMaxSuccesses() {
-  int counter = 0;
-  bool test(int n) {
-    counter++;
-    return true;
-  }
-  new QuickCheck(maxSize: 50, maxSuccesses: 100, quiet: true)
-      .check(forall(c.ints, test));
-  expect(counter, equals(51),
-         reason: "test wasn't called 50 times");
 }
 
 void quickCheckIsMonotonous() {
@@ -103,11 +80,9 @@ void quickCheckIsMonotonous() {
 void main() {
   test('QuickCheck performs check', quickCheckPerformsCheck);
   test('QuickCheck throws exception on false', falseTriggersException);
-  test('QuickCheck honors maxSize', quickCheckHonorsMaxSize);
-  test('QuickCheck honors maxSuccesses on infinite enumerations',
-       quickCheckHonorsMaxSuccesses1);
-  test('QuickCheck honors maxSuccesses on finite enumerations',
-       quickCheckHonorsMaxSuccesses2);
-  test('maxSize supersedes maxSuccesses', maxSizeSupersedesMaxSuccesses);
+  test('QuickCheck honors maxSize on infinite enumerations',
+       quickCheckHonorsMaxSize);
+  test('QuickCheck honors maxSize on finite enumerations',
+       quickCheckHonorsMaxSize2);
   test('QuickCheck is monotonous', quickCheckIsMonotonous);
 }
