@@ -27,7 +27,7 @@ void quickCheckPerformsCheck() {
     called = true;
     return true;
   }
-  new QuickCheck().check(forall(c.ints, test));
+  new QuickCheck(quiet: true).check(forall(c.ints, test));
   expect(called, isTrue, reason: "test wasn't called");
 }
 
@@ -35,7 +35,7 @@ void falseTriggersException() {
   bool test(int n) {
     return false;
   }
-  expect(() => new QuickCheck().check(forall(c.ints, test)),
+  expect(() => new QuickCheck(quiet: true).check(forall(c.ints, test)),
          throwsA(new isInstanceOf<String>()));
 }
 
