@@ -54,7 +54,7 @@ abstract class Check {
 
   Check(this.quiet);
 
-  abstract check(Property);
+  check(Property);
 
   void display(String message) {
     if (!quiet) {
@@ -77,7 +77,7 @@ abstract class Check {
 class SmallCheck extends Check {
   final int depth;
 
-  SmallCheck([depth = 4, quiet = false])
+  SmallCheck({depth: 4, quiet: false})
       : this.depth = depth
       , super(quiet);
 
@@ -112,7 +112,7 @@ class QuickCheck extends Check {
   final int seed;
   final int maxSize;
 
-  QuickCheck([seed = 0, maxSuccesses = 100, maxSize = 100, quiet = false])
+  QuickCheck({seed: 0, maxSuccesses: 100, maxSize: 100, quiet: false})
       : this.seed = seed
       , this.maxSize = maxSize
       , super(quiet);
