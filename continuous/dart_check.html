@@ -29,28 +29,18 @@
 <h2><strong>dart_check</strong> library</h2>
 <div>
 <h3>Functions</h3>
-<div class="method"><h4 id="forall">
+<div class="method"><h4 id="forall4">
 <button class="show-code">Code</button>
-<a href="dart_check/Property.html">Property</a> <strong>forall</strong>(<a href="enumerators/Enumeration.html">Enumeration</a> enumeration, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> property(x)) <a class="anchor-link" href="#forall"
-              title="Permalink to forall">#</a></h4>
+<a href="dart_check/Property.html">Property</a> <strong>forall4</strong>(<a href="enumerators/Enumeration.html">Enumeration</a> enumeration1, <a href="enumerators/Enumeration.html">Enumeration</a> enumeration2, <a href="enumerators/Enumeration.html">Enumeration</a> enumeration3, <a href="enumerators/Enumeration.html">Enumeration</a> enumeration4, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> property(x, y, z, w)) <a class="anchor-link" href="#forall4"
+              title="Permalink to forall4">#</a></h4>
 <div class="doc">
 <pre class="source">
-Property forall(Enumeration enumeration, bool property(x)) =&gt;
-    new Property(_P1.enumerate(enumeration),
-                 (_P1 p) =&gt; property(p.proj1));
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="forall2">
-<button class="show-code">Code</button>
-<a href="dart_check/Property.html">Property</a> <strong>forall2</strong>(<a href="enumerators/Enumeration.html">Enumeration</a> enumeration1, <a href="enumerators/Enumeration.html">Enumeration</a> enumeration2, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> property(x, y)) <a class="anchor-link" href="#forall2"
-              title="Permalink to forall2">#</a></h4>
-<div class="doc">
-<pre class="source">
-Property forall2(Enumeration enumeration1, Enumeration enumeration2,
-                 bool property(x, y)) =&gt;
-    new Property(_P2.enumerate(enumeration1, enumeration2),
-                 (_P2 p) =&gt; property(p.proj1, p.proj2));
+Property forall4(Enumeration enumeration1, Enumeration enumeration2,
+                Enumeration enumeration3, Enumeration enumeration4,
+                bool property(x, y, z, w)) =&gt;
+   new Property(_P4.enumerate(enumeration1, enumeration2, enumeration3,
+                              enumeration4),
+                (_P4 p) =&gt; property(p.proj1, p.proj2, p.proj3, p.proj4));
 </pre>
 </div>
 </div>
@@ -61,36 +51,49 @@ Property forall2(Enumeration enumeration1, Enumeration enumeration2,
 <div class="doc">
 <pre class="source">
 Property forall3(Enumeration enumeration1, Enumeration enumeration2,
-                 Enumeration enumeration3, bool property(x, y, z)) =&gt;
-    new Property(_P3.enumerate(enumeration1, enumeration2, enumeration3),
-                 (_P3 p) =&gt; property(p.proj1, p.proj2, p.proj3));
+                Enumeration enumeration3, bool property(x, y, z)) =&gt;
+   new Property(_P3.enumerate(enumeration1, enumeration2, enumeration3),
+                (_P3 p) =&gt; property(p.proj1, p.proj2, p.proj3));
 </pre>
 </div>
 </div>
-<div class="method"><h4 id="forall4">
+<div class="method"><h4 id="forall2">
 <button class="show-code">Code</button>
-<a href="dart_check/Property.html">Property</a> <strong>forall4</strong>(<a href="enumerators/Enumeration.html">Enumeration</a> enumeration1, <a href="enumerators/Enumeration.html">Enumeration</a> enumeration2, <a href="enumerators/Enumeration.html">Enumeration</a> enumeration3, <a href="enumerators/Enumeration.html">Enumeration</a> enumeration4, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> property(x, y, z, w)) <a class="anchor-link" href="#forall4"
-              title="Permalink to forall4">#</a></h4>
+<a href="dart_check/Property.html">Property</a> <strong>forall2</strong>(<a href="enumerators/Enumeration.html">Enumeration</a> enumeration1, <a href="enumerators/Enumeration.html">Enumeration</a> enumeration2, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> property(x, y)) <a class="anchor-link" href="#forall2"
+              title="Permalink to forall2">#</a></h4>
 <div class="doc">
 <pre class="source">
-Property forall4(Enumeration enumeration1, Enumeration enumeration2,
-                 Enumeration enumeration3, Enumeration enumeration4,
-                 bool property(x, y, z, w)) =&gt;
-    new Property(_P4.enumerate(enumeration1, enumeration2, enumeration3,
-                               enumeration4),
-                 (_P4 p) =&gt; property(p.proj1, p.proj2, p.proj3, p.proj4));
+Property forall2(Enumeration enumeration1, Enumeration enumeration2,
+                bool property(x, y)) =&gt;
+   new Property(_P2.enumerate(enumeration1, enumeration2),
+                (_P2 p) =&gt; property(p.proj1, p.proj2));
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="forall">
+<button class="show-code">Code</button>
+<a href="dart_check/Property.html">Property</a> <strong>forall</strong>(<a href="enumerators/Enumeration.html">Enumeration</a> enumeration, <a href="http://api.dartlang.org/dart_core/bool.html">bool</a> property(x)) <a class="anchor-link" href="#forall"
+              title="Permalink to forall">#</a></h4>
+<div class="doc">
+<pre class="source">
+Property forall(Enumeration enumeration, bool property(x)) =&gt;
+   new Property(_P1.enumerate(enumeration),
+                (_P1 p) =&gt; property(p.proj1));
 </pre>
 </div>
 </div>
 </div>
 <div>
-<h3>Classes</h3>
+<h3>Abstract Classes</h3>
           <div class="type">
           <h4>
             <a href="dart_check/Check.html"><strong>Check</strong></a>
           </h4>
           </div>
           
+</div>
+<div>
+<h3>Classes</h3>
           <div class="type">
           <h4>
             <a href="dart_check/Property.html"><strong>Property</strong></a>
@@ -115,7 +118,7 @@ Property forall4(Enumeration enumeration1, Enumeration enumeration2,
         </div>
         
         <div class="footer">
-          <div>This page was generated at 2012-10-10 21:39:49.642</div>
+          <div>This page was generated at 2012-11-13 03:28:24.293</div>
         </div>
         <script async src="client-live-nav.js"></script>
         </body></html>

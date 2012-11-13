@@ -2,7 +2,7 @@
         <html manifest="/appcache.manifest">
         <head>
                 <meta charset="utf-8">
-        <title>Check class / dart_check Library / Dart Documentation</title>
+        <title>Check abstract class / dart_check Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,11 +27,37 @@
 </div>
 <div class="content">
         <h2><strong>Check</strong>
-          class
+          abstract class
         </h2>
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+abstract class Check {
+ final bool quiet;
+
+ Check(this.quiet);
+
+ check(Property);
+
+ void display(String message) {
+   if (!quiet) {
+     stdout.writeString("\r\u001b[K$message");
+   }
+ }
+
+ void clear() =&gt; display('');
+
+ static String _errorMessage(int counter, _Product prod) {
+   final res = new StringBuffer("falsified after $counter tests\n");
+   final args = prod.toStrings();
+   for (int i = 0; i &lt; args.length; i++) {
+     res.add("  argument ${i+1}: ${args[i]}\n");
+   }
+   return res.toString();
+ }
+}
+</pre>
 </div>
 <h3>Subclasses</h3>
 <p>
@@ -50,7 +76,7 @@ Check(this.quiet);
 </div>
 </div>
 <div>
-<h3>Fields</h3>
+<h3>Properties</h3>
 <div class="field"><h4 id="quiet">
 <button class="show-code">Code</button>
 final <a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <strong>quiet</strong> <a class="anchor-link"
@@ -66,22 +92,6 @@ final bool quiet;
 </div>
 <div>
 <h3>Methods</h3>
-<div class="method inherited"><h4 id="==">
-<button class="show-code">Code</button>
-<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to Check.operator ==">#</a></h4>
-<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
-<p>The equality operator.</p>
-<p>The default behavior for all <code>Object</code>s is to return true if and
-only if <code>this</code> and 
-<span class="param">other</span> are the same object.</p>
-<p>If a subclass overrides the equality operator it should override
-the <code>hashCode</code> method as well to maintain consistency.</p>
-<pre class="source">
-bool operator ==(other) =&gt; identical(this, other);
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="check">
 abstract <strong>check</strong>(Property) <a class="anchor-link" href="#check"
               title="Permalink to Check.check">#</a></h4>
@@ -105,67 +115,10 @@ void <strong>display</strong>(<a href="http://api.dartlang.org/dart_core/String.
 <div class="doc">
 <pre class="source">
 void display(String message) {
-  if (!quiet) {
-    stdout.writeString("\r\u001b[K$message");
-  }
+ if (!quiet) {
+   stdout.writeString("\r\u001b[K$message");
+ }
 }
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="hashCode">
-<button class="show-code">Code</button>
-<a href="http://api.dartlang.org/dart_core/int.html">int</a> <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to Check.hashCode">#</a></h4>
-<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <code>hashCode</code> it should override the
-equality operator as well to maintain consistency.</p>
-<pre class="source">
-external int hashCode();
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> name, <a href="http://api.dartlang.org/dart_core/List.html">List</a> args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to Check.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-<a href="http://api.dartlang.org/dart_core/Type.html">Type</a> <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to Check.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="toString">
-<button class="show-code">Code</button>
-<a href="http://api.dartlang.org/dart_core/String.html">String</a> <strong>toString</strong>() <a class="anchor-link" href="#toString"
-              title="Permalink to Check.toString">#</a></h4>
-<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
-<p>Returns a string representation of this object.</p>
-<pre class="source">
-external String toString();
 </pre>
 </div>
 </div>
@@ -175,7 +128,7 @@ external String toString();
         </div>
         
         <div class="footer">
-          <div>This page was generated at 2012-10-10 21:39:49.861</div>
+          <div>This page was generated at 2012-11-13 03:28:24.451</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>

@@ -2,7 +2,7 @@
         <html manifest="/appcache.manifest">
         <head>
                 <meta charset="utf-8">
-        <title>Finite&lt;A&gt; class / enumerators Library / Dart Documentation</title>
+        <title>Finite&lt;A&gt; abstract class / enumerators Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
@@ -27,11 +27,95 @@
 </div>
 <div class="content">
         <h2><strong>Finite&lt;A&gt;</strong>
-          class
+          abstract class
         </h2>
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
+<pre class="source">
+abstract class Finite&lt;A&gt; {
+ get card;
+
+ Finite();
+ factory Finite.empty() =&gt; new _FEmpty();
+ factory Finite.singleton(A x) =&gt; new _FSingleton(x);
+
+ /**
+  * Union.
+  */
+ Finite&lt;A&gt; operator +(Finite&lt;A&gt; fin) =&gt; new _FSum(this, fin);
+
+ /**
+  * Cartesian product.
+  */
+ Finite&lt;Pair&gt; operator *(Finite fin) =&gt; new _FProd(this, fin);
+
+ /**
+  * [Finite] is a functor.
+  */
+ Finite map(f(A x)) =&gt; new _FMap(f, this);
+
+ /**
+  * [Finite] is an applicative functor.
+  */
+ Finite apply(Finite fin) =&gt;
+     (this * fin).map((pair) =&gt; (pair.fst as Function)(pair.snd));
+
+ A operator [](int index) =&gt; _eval(this, index);
+
+ static _eval(Finite finite, int index) {
+   var instructions = &lt;_Instruction&gt;[new _IEval(finite, index)];
+   var stack = [];
+   while (instructions.length &gt; 0) {
+     _Instruction instr = instructions.removeLast();
+     if (instr is _IEval) {
+       final i = instr.i;
+       final fin = instr.fin;
+       if (fin is _FEmpty) {
+         throw new RangeError(index);
+       } else if (fin is _FSingleton) {
+         if (i == 0)
+           stack.addLast(fin.value);
+         else
+           throw new RangeError(index);
+       } else if (fin is _FSum) {
+         if (i &lt; fin.fin1.card)
+           instructions.addLast(new _IEval(fin.fin1, i));
+         else
+           instructions.addLast(new _IEval(fin.fin2, i - fin.fin1.card));
+       } else if (fin is _FProd) {
+         instructions.addLast(new _IProd());
+         instructions.addLast(new _IEval(fin.fin1, i ~/ fin.fin2.card));
+         instructions.addLast(new _IEval(fin.fin2, i % fin.fin2.card));
+       } else if (fin is _FMap) {
+         instructions.addLast(new _IMap(fin.f));
+         instructions.addLast(new _IEval(fin.mapped, i));
+       }
+     } else if (instr is _IProd) {
+       final v1 = stack.removeLast();
+       final v2 = stack.removeLast();
+       stack.addLast(new Pair(v1, v2));
+     } else if (instr is _IMap) {
+       final v = stack.removeLast();
+       stack.addLast(instr.f(v));
+     }
+   }
+   return stack[0];
+ }
+
+ String toString() {
+   final strings = toLazyList().map((f) =&gt; f.toString()).toList();
+   return "{${Strings.join(strings, ", ")}}";
+ }
+
+ LazyList&lt;A&gt; toLazyList() {
+   aux(i) =&gt; (i == this.card)
+       ? new LazyList.empty()
+       : new LazyList.cons(this[i], () =&gt; aux(i+1));
+   return aux(0);
+ }
+}
+</pre>
 </div>
 <div>
 <h3>Constructors</h3>
@@ -67,15 +151,29 @@ factory Finite.singleton(A x) =&gt; new _FSingleton(x);
 </div>
 </div>
 <div>
-<h3>Methods</h3>
-<div class="method"><h4 id="*">
+<h3>Properties</h3>
+<div class="field"><h4 id="card">
 <button class="show-code">Code</button>
-<a href="../enumerators/Finite.html">Finite</a>&lt;<a href="../enumerators/Pair.html">Pair</a>&gt; <strong>operator *</strong>(<a href="../enumerators/Finite.html">Finite</a> fin) <a class="anchor-link" href="#*"
-              title="Permalink to Finite&lt;A&gt;.operator *">#</a></h4>
-<div class="doc">
-<p>Cartesian product.</p>
+final         <strong>card</strong> <a class="anchor-link"
+            href="#card"
+            title="Permalink to Finite&lt;A&gt;.card">#</a>
+        </h4>
+        <div class="doc">
 <pre class="source">
-Finite&lt;Pair&gt; operator *(Finite fin) =&gt; new _FProd(this, fin);
+get card;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<h3>Operators</h3>
+<div class="method"><h4 id="[]">
+<button class="show-code">Code</button>
+<a href="../enumerators/Finite.html">A</a> <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> index) <a class="anchor-link" href="#[]"
+              title="Permalink to Finite&lt;A&gt;.operator []">#</a></h4>
+<div class="doc">
+<pre class="source">
+A operator [](int index) =&gt; _eval(this, index);
 </pre>
 </div>
 </div>
@@ -90,32 +188,20 @@ Finite&lt;A&gt; operator +(Finite&lt;A&gt; fin) =&gt; new _FSum(this, fin);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="==">
+<div class="method"><h4 id="*">
 <button class="show-code">Code</button>
-<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>operator ==</strong>(other) <a class="anchor-link" href="#=="
-              title="Permalink to Finite&lt;A&gt;.operator ==">#</a></h4>
-<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
-<p>The equality operator.</p>
-<p>The default behavior for all <code>Object</code>s is to return true if and
-only if <code>this</code> and 
-<span class="param">other</span> are the same object.</p>
-<p>If a subclass overrides the equality operator it should override
-the <code>hashCode</code> method as well to maintain consistency.</p>
-<pre class="source">
-bool operator ==(other) =&gt; identical(this, other);
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="[]">
-<button class="show-code">Code</button>
-<a href="../enumerators/Finite.html">A</a> <strong>operator []</strong>(<a href="http://api.dartlang.org/dart_core/int.html">int</a> index) <a class="anchor-link" href="#[]"
-              title="Permalink to Finite&lt;A&gt;.operator []">#</a></h4>
+<a href="../enumerators/Finite.html">Finite</a>&lt;<a href="../enumerators/Pair.html">Pair</a>&gt; <strong>operator *</strong>(<a href="../enumerators/Finite.html">Finite</a> fin) <a class="anchor-link" href="#*"
+              title="Permalink to Finite&lt;A&gt;.operator *">#</a></h4>
 <div class="doc">
+<p>Cartesian product.</p>
 <pre class="source">
-A operator [](int index) =&gt; _eval(this, index);
+Finite&lt;Pair&gt; operator *(Finite fin) =&gt; new _FProd(this, fin);
 </pre>
 </div>
 </div>
+</div>
+<div>
+<h3>Methods</h3>
 <div class="method"><h4 id="apply">
 <button class="show-code">Code</button>
 <a href="../enumerators/Finite.html">Finite</a> <strong>apply</strong>(<a href="../enumerators/Finite.html">Finite</a> fin) <a class="anchor-link" href="#apply"
@@ -124,31 +210,7 @@ A operator [](int index) =&gt; _eval(this, index);
 <p><a class="crossref" href="../enumerators/Finite.html#Finite">Finite</a> is an applicative functor.</p>
 <pre class="source">
 Finite apply(Finite fin) =&gt;
-    (this * fin).map((pair) =&gt; (pair.fst as Function)(pair.snd));
-</pre>
-</div>
-</div>
-<div class="method"><h4 id="card">
-abstract <strong>get card</strong>() <a class="anchor-link" href="#card"
-              title="Permalink to Finite&lt;A&gt;.get card">#</a></h4>
-<div class="doc">
-</div>
-</div>
-<div class="method inherited"><h4 id="hashCode">
-<button class="show-code">Code</button>
-<a href="http://api.dartlang.org/dart_core/int.html">int</a> <strong>hashCode</strong>() <a class="anchor-link" href="#hashCode"
-              title="Permalink to Finite&lt;A&gt;.hashCode">#</a></h4>
-<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
-<p>Get a hash code for this object.</p>
-<p>All objects have hash codes. Hash codes are guaranteed to be the
-same for objects that are equal when compared using the equality
-operator <code>==</code>. Other than that there are no guarantees about
-the hash codes. They will not be consistent between runs and
-there are no distribution guarantees.</p>
-<p>If a subclass overrides <code>hashCode</code> it should override the
-equality operator as well to maintain consistency.</p>
-<pre class="source">
-external int hashCode();
+   (this * fin).map((pair) =&gt; (pair.fst as Function)(pair.snd));
 </pre>
 </div>
 </div>
@@ -163,34 +225,6 @@ Finite map(f(A x)) =&gt; new _FMap(f, this);
 </pre>
 </div>
 </div>
-<div class="method inherited"><h4 id="noSuchMethod">
-<button class="show-code">Code</button>
-<strong>noSuchMethod</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> name, <a href="http://api.dartlang.org/dart_core/List.html">List</a> args) <a class="anchor-link" href="#noSuchMethod"
-              title="Permalink to Finite&lt;A&gt;.noSuchMethod">#</a></h4>
-<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
-<p><code>noSuchMethod</code> is invoked when users invoke a non-existant method
-on an object. The name of the method and the arguments of the
-invocation are passed to <code>noSuchMethod</code>. If <code>noSuchMethod</code>
-returns a value, that value becomes the result of the original
-invocation.</p>
-<p>The default behavior of <code>noSuchMethod</code> is to throw a
-<code>noSuchMethodError</code>.</p>
-<pre class="source">
-external Dynamic noSuchMethod(String name, List args);
-</pre>
-</div>
-</div>
-<div class="method inherited"><h4 id="runtimeType">
-<button class="show-code">Code</button>
-<a href="http://api.dartlang.org/dart_core/Type.html">Type</a> <strong>get runtimeType</strong>() <a class="anchor-link" href="#runtimeType"
-              title="Permalink to Finite&lt;A&gt;.get runtimeType">#</a></h4>
-<div class="inherited-from">inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div><div class="doc">
-<p>A representation of the runtime type of the object.</p>
-<pre class="source">
-external Type get runtimeType;
-</pre>
-</div>
-</div>
 <div class="method"><h4 id="toLazyList">
 <button class="show-code">Code</button>
 <a href="../enumerators/LazyList.html">LazyList</a>&lt;<a href="../enumerators/Finite.html">A</a>&gt; <strong>toLazyList</strong>() <a class="anchor-link" href="#toLazyList"
@@ -198,10 +232,10 @@ external Type get runtimeType;
 <div class="doc">
 <pre class="source">
 LazyList&lt;A&gt; toLazyList() {
-  aux(i) =&gt; (i == this.card)
-      ? new LazyList.empty()
-      : new LazyList(() =&gt; new Pair(this[i], aux(i+1)));
-  return aux(0);
+ aux(i) =&gt; (i == this.card)
+     ? new LazyList.empty()
+     : new LazyList.cons(this[i], () =&gt; aux(i+1));
+ return aux(0);
 }
 </pre>
 </div>
@@ -216,8 +250,8 @@ LazyList&lt;A&gt; toLazyList() {
 <div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
 <pre class="source">
 String toString() {
-  final strings = toLazyList().map((f) =&gt; f.toString()).toList();
-  return "{${Strings.join(strings, ", ")}}";
+ final strings = toLazyList().map((f) =&gt; f.toString()).toList();
+ return "{${Strings.join(strings, ", ")}}";
 }
 </pre>
 </div>
@@ -228,7 +262,7 @@ String toString() {
         </div>
         
         <div class="footer">
-          <div>This page was generated at 2012-10-10 21:39:49.909</div>
+          <div>This page was generated at 2012-11-13 03:28:24.484</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>
