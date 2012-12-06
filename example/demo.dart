@@ -16,7 +16,7 @@
 
 library demo;
 
-import 'package:dart_check/dart_check.dart';
+import 'package:propcheck/propcheck.dart';
 import 'package:enumerators/combinators.dart' as c;
 import 'package:unittest/unittest.dart';
 

@@ -1,4 +1,4 @@
-name: dart_check
+name: propcheck
 description: A library for exhaustive and randomized testing of Dart properties.
 version: 0.0.1
 author: Paul Brauner <polux@google.com>
