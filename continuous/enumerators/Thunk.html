@@ -1,20 +1,20 @@
         <!DOCTYPE html>
-        <html manifest="/appcache.manifest">
+        <html>
         <head>
                 <meta charset="utf-8">
-        <title>Property class / dart_check Library / Dart Documentation</title>
+        <title>Thunk&lt;A&gt; class / enumerators Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../favicon.ico">
         
         </head>
-        <body data-library="dart_check" data-type="Property">
+        <body data-library="enumerators" data-type="Thunk&amp;lt;A&amp;gt;">
         <div class="page">
         <div class="header">
           <a href="../index.html"><div class="logo"></div></a>
           <a href="../index.html">Dart Documentation</a>
-         &rsaquo; <a href="../dart_check.html">dart_check</a> &rsaquo; <a href="../dart_check/Property.html">Property</a>        <div id="search-box">
+         &rsaquo; <a href="../enumerators.html">enumerators</a> &rsaquo; <a href="../enumerators/Thunk.html">Thunk&lt;A&gt;</a>        <div id="search-box">
           <input type="search" name="q" id="q" autocomplete="off"
               class="search-input" placeholder="Search API">
         </div>
@@ -26,56 +26,67 @@
         
 </div>
 <div class="content">
-        <h2><strong>Property</strong>
+        <h2><strong>Thunk&lt;A&gt;</strong>
           class
         </h2>
         
 <button id="show-inherited" class="show-inherited">Hide inherited</button>
 <div class="doc">
 <pre class="source">
-class Property {
- final Enumeration&lt;_Product&gt; enum;
- final Function property;
- Property(this.enum, this.property);
+class Thunk&lt;A&gt; {
+ A _cached;
+ Function gen;
+ Thunk(A gen()) : this.gen = gen;
+ A get value {
+   if (_cached == null) {
+     _cached = gen();
+   }
+   return _cached;
+ }
 }
 </pre>
 </div>
 <div>
 <h3>Constructors</h3>
-<div class="method"><h4 id="Property">
+<div class="method"><h4 id="Thunk">
 <button class="show-code">Code</button>
-new <strong>Property</strong>(<a href="../enumerators/Enumeration.html">Enumeration</a>&lt;<a href="../dart_check/_Product.html">_Product</a>&gt; enum, <a href="http://api.dartlang.org/dart_core/Function.html">Function</a> property) <a class="anchor-link" href="#Property"
-              title="Permalink to Property.Property">#</a></h4>
+new <strong>Thunk</strong>(<a href="../enumerators/Thunk.html">A</a> gen()) <a class="anchor-link" href="#Thunk"
+              title="Permalink to Thunk&lt;A&gt;.Thunk">#</a></h4>
 <div class="doc">
 <pre class="source">
-Property(this.enum, this.property);
+Thunk(A gen()) : this.gen = gen;
 </pre>
 </div>
 </div>
 </div>
 <div>
 <h3>Properties</h3>
-<div class="field"><h4 id="enum">
+<div class="field"><h4 id="gen">
 <button class="show-code">Code</button>
-final <a href="../enumerators/Enumeration.html">Enumeration</a>&lt;<a href="../dart_check/_Product.html">_Product</a>&gt;         <strong>enum</strong> <a class="anchor-link"
-            href="#enum"
-            title="Permalink to Property.enum">#</a>
+<a href="http://api.dartlang.org/dart_core/Function.html">Function</a>         <strong>gen</strong> <a class="anchor-link"
+            href="#gen"
+            title="Permalink to Thunk&lt;A&gt;.gen">#</a>
         </h4>
         <div class="doc">
 <pre class="source">
-final Enumeration&lt;_Product&gt; enum;
+Function gen;
 </pre>
 </div>
 </div>
-<div class="field"><h4 id="property">
+<div class="field"><h4 id="value">
 <button class="show-code">Code</button>
-final <a href="http://api.dartlang.org/dart_core/Function.html">Function</a>         <strong>property</strong> <a class="anchor-link"
-            href="#property"
-            title="Permalink to Property.property">#</a>
+final <a href="../enumerators/Thunk.html">A</a>         <strong>value</strong> <a class="anchor-link"
+            href="#value"
+            title="Permalink to Thunk&lt;A&gt;.value">#</a>
         </h4>
         <div class="doc">
 <pre class="source">
-final Function property;
+A get value {
+ if (_cached == null) {
+   _cached = gen();
+ }
+ return _cached;
+}
 </pre>
 </div>
 </div>
@@ -85,7 +96,7 @@ final Function property;
         </div>
         
         <div class="footer">
-          <div>This page was generated at 2012-11-13 03:28:24.453</div>
+          <div>This page was generated at 2012-12-06 02:57:42.241</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>

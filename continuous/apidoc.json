@@ -1,0 +1,2331 @@
+
+[
+  {
+    "kind": "library",
+    "name": "enumerators",
+    "children": [
+      {
+        "returnType": {
+          "name": "Enumeration",
+          "refId": "Enumeration"
+        },
+        "kind": "method",
+        "name": "fix",
+        "children": [
+          {
+            "ref": {
+              "name": "Function",
+              "refId": "Function"
+            },
+            "kind": "param",
+            "name": "f",
+            "id": "f"
+          }
+        ],
+        "id": "fix1()"
+      },
+      {
+        "returnType": {
+          "name": "Enumeration",
+          "refId": "Enumeration"
+        },
+        "kind": "method",
+        "name": "singleton",
+        "children": [
+          {
+            "ref": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "param",
+            "name": "x",
+            "id": "x"
+          }
+        ],
+        "id": "singleton1()"
+      },
+      {
+        "returnType": {
+          "name": "Enumeration",
+          "refId": "Enumeration"
+        },
+        "kind": "method",
+        "name": "empty",
+        "id": "empty0()"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nA lazy list, possibly infinite.\n\n",
+        "name": "LazyList",
+        "children": [
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "LazyList._",
+            "id": "LazyList._0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "LazyList.empty",
+            "id": "LazyList.empty0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "LazyList.cons",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "head",
+                "id": "head"
+              },
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "gen",
+                "id": "gen"
+              }
+            ],
+            "id": "LazyList.cons2()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "LazyList.singleton",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "elem",
+                "id": "elem"
+              }
+            ],
+            "id": "LazyList.singleton1()"
+          },
+          {
+            "returnType": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "method",
+            "name": "isEmpty",
+            "id": "isEmpty0()"
+          },
+          {
+            "returnType": {
+              "name": "A",
+              "refId": "A"
+            },
+            "kind": "method",
+            "name": "head",
+            "id": "head0()"
+          },
+          {
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList",
+              "arguments": [
+                {
+                  "name": "A",
+                  "refId": "A"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "tail",
+            "id": "tail0()"
+          },
+          {
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList"
+            },
+            "kind": "method",
+            "name": "take",
+            "children": [
+              {
+                "ref": {
+                  "name": "int",
+                  "refId": "int"
+                },
+                "kind": "param",
+                "name": "length",
+                "id": "length"
+              }
+            ],
+            "id": "take1()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList"
+            },
+            "kind": "method",
+            "comment": "\n[s] appended to [this].\n\n",
+            "name": "+",
+            "children": [
+              {
+                "ref": {
+                  "name": "LazyList",
+                  "refId": "LazyList"
+                },
+                "kind": "param",
+                "name": "s",
+                "id": "s"
+              }
+            ],
+            "id": "+1()"
+          },
+          {
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList"
+            },
+            "kind": "method",
+            "comment": "\nConcatenates this, Assuming [: A = Stream<Stream<B>> :].\n\n",
+            "name": "concat",
+            "id": "concat0()"
+          },
+          {
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList"
+            },
+            "kind": "method",
+            "comment": "\n[LazyList] is a functor.\n\n",
+            "name": "map",
+            "children": [
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "f",
+                "id": "f"
+              }
+            ],
+            "id": "map1()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "A",
+              "refId": "A"
+            },
+            "kind": "method",
+            "comment": "\nLinear indexing.\n\n",
+            "name": "[]",
+            "children": [
+              {
+                "ref": {
+                  "name": "int",
+                  "refId": "int"
+                },
+                "kind": "param",
+                "name": "index",
+                "id": "index"
+              }
+            ],
+            "id": "[]1()"
+          },
+          {
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList",
+              "arguments": [
+                {
+                  "name": "LazyList",
+                  "refId": "LazyList"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "tails",
+            "id": "tails0()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList"
+            },
+            "kind": "method",
+            "comment": "\nCartesian product.\n\n",
+            "name": "*",
+            "children": [
+              {
+                "ref": {
+                  "name": "LazyList",
+                  "refId": "LazyList"
+                },
+                "kind": "param",
+                "name": "s",
+                "id": "s"
+              }
+            ],
+            "id": "*1()"
+          },
+          {
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList"
+            },
+            "kind": "method",
+            "comment": "\n[LazyList] is an applicative functor.\n\n",
+            "name": "apply",
+            "children": [
+              {
+                "ref": {
+                  "name": "LazyList",
+                  "refId": "LazyList"
+                },
+                "kind": "param",
+                "name": "s",
+                "id": "s"
+              }
+            ],
+            "id": "apply1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "name": "forEach",
+            "children": [
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "f",
+                "id": "f"
+              }
+            ],
+            "id": "forEach1()"
+          },
+          {
+            "returnType": {
+              "name": "List",
+              "refId": "List",
+              "arguments": [
+                {
+                  "name": "A",
+                  "refId": "A"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "toList",
+            "id": "toList0()"
+          },
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "name": "toString",
+            "id": "toString0()"
+          },
+          {
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList"
+            },
+            "kind": "method",
+            "name": "_lazyPlus",
+            "children": [
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "gen",
+                "id": "gen"
+              }
+            ],
+            "id": "_lazyPlus1()"
+          },
+          {
+            "ref": {
+              "name": "A",
+              "refId": "A"
+            },
+            "kind": "property",
+            "name": "head",
+            "id": "head"
+          },
+          {
+            "ref": {
+              "name": "LazyList",
+              "refId": "LazyList",
+              "arguments": [
+                {
+                  "name": "A",
+                  "refId": "A"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "tail",
+            "id": "tail"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "isStatic": true,
+            "kind": "property",
+            "name": "counter",
+            "id": "counter"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "LazyList._",
+            "id": "LazyList._0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "LazyList.empty",
+            "id": "LazyList.empty0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "LazyList.cons",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "head",
+                "id": "head"
+              },
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "gen",
+                "id": "gen"
+              }
+            ],
+            "id": "LazyList.cons2()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "LazyList.singleton",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "elem",
+                "id": "elem"
+              }
+            ],
+            "id": "LazyList.singleton1()"
+          }
+        ],
+        "id": "LazyList"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "comment": "\nAn enumeration of finite parts of A.\n\n",
+        "name": "Enumeration",
+        "children": [
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Enumeration",
+            "children": [
+              {
+                "ref": {
+                  "name": "Thunk",
+                  "refId": "Thunk",
+                  "arguments": [
+                    {
+                      "name": "LazyList",
+                      "refId": "LazyList",
+                      "arguments": [
+                        {
+                          "name": "Finite",
+                          "refId": "Finite",
+                          "arguments": [
+                            {
+                              "name": "A",
+                              "refId": "A"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "thunk",
+                "id": "thunk"
+              }
+            ],
+            "id": "Enumeration1()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Enumeration.empty",
+            "id": "Enumeration.empty0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Enumeration.singleton",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "x",
+                "id": "x"
+              }
+            ],
+            "id": "Enumeration.singleton1()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Enumeration.fix",
+            "children": [
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "f",
+                "id": "f"
+              }
+            ],
+            "id": "Enumeration.fix1()"
+          },
+          {
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList",
+              "arguments": [
+                {
+                  "name": "Finite",
+                  "refId": "Finite",
+                  "arguments": [
+                    {
+                      "name": "A",
+                      "refId": "A"
+                    }
+                  ]
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "parts",
+            "id": "parts0()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "A",
+              "refId": "A"
+            },
+            "kind": "method",
+            "name": "[]",
+            "children": [
+              {
+                "ref": {
+                  "name": "int",
+                  "refId": "int"
+                },
+                "kind": "param",
+                "name": "i",
+                "id": "i"
+              }
+            ],
+            "id": "[]1()"
+          },
+          {
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList",
+              "arguments": [
+                {
+                  "name": "A",
+                  "refId": "A"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "toLazyList",
+            "id": "toLazyList0()"
+          },
+          {
+            "isStatic": true,
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList",
+              "arguments": [
+                {
+                  "name": "Finite",
+                  "refId": "Finite"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "_zipPlus",
+            "children": [
+              {
+                "ref": {
+                  "name": "LazyList",
+                  "refId": "LazyList",
+                  "arguments": [
+                    {
+                      "name": "Finite",
+                      "refId": "Finite"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "xs",
+                "id": "xs"
+              },
+              {
+                "ref": {
+                  "name": "LazyList",
+                  "refId": "LazyList",
+                  "arguments": [
+                    {
+                      "name": "Finite",
+                      "refId": "Finite"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "ys",
+                "id": "ys"
+              }
+            ],
+            "id": "_zipPlus2()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "Enumeration",
+              "refId": "Enumeration",
+              "arguments": [
+                {
+                  "name": "A",
+                  "refId": "A"
+                }
+              ]
+            },
+            "kind": "method",
+            "comment": "\nDisjoint union (it is up to the user to make sure that operands are\ndisjoint).\n\n",
+            "name": "+",
+            "children": [
+              {
+                "ref": {
+                  "name": "Enumeration",
+                  "refId": "Enumeration",
+                  "arguments": [
+                    {
+                      "name": "A",
+                      "refId": "A"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "e",
+                "id": "e"
+              }
+            ],
+            "id": "+1()"
+          },
+          {
+            "returnType": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "method",
+            "comment": "\n[Enumeration] is a functor.\n\n",
+            "name": "map",
+            "children": [
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "f",
+                "id": "f"
+              }
+            ],
+            "id": "map1()"
+          },
+          {
+            "isStatic": true,
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList",
+              "arguments": [
+                {
+                  "name": "LazyList",
+                  "refId": "LazyList"
+                }
+              ]
+            },
+            "kind": "method",
+            "comment": "\n[: _reversals([1,2,3,...]) :] is [: [[1], [2,1], [3,2,1], ...] :].\n\n",
+            "name": "_reversals",
+            "children": [
+              {
+                "ref": {
+                  "name": "LazyList",
+                  "refId": "LazyList"
+                },
+                "kind": "param",
+                "name": "l",
+                "id": "l"
+              }
+            ],
+            "id": "_reversals1()"
+          },
+          {
+            "isStatic": true,
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "_prod",
+            "children": [
+              {
+                "ref": {
+                  "name": "LazyList",
+                  "refId": "LazyList",
+                  "arguments": [
+                    {
+                      "name": "Finite",
+                      "refId": "Finite"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "xs",
+                "id": "xs"
+              },
+              {
+                "ref": {
+                  "name": "LazyList",
+                  "refId": "LazyList",
+                  "arguments": [
+                    {
+                      "name": "LazyList",
+                      "refId": "LazyList",
+                      "arguments": [
+                        {
+                          "name": "Finite",
+                          "refId": "Finite"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "yss",
+                "id": "yss"
+              }
+            ],
+            "id": "_prod2()"
+          },
+          {
+            "isStatic": true,
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "_conv",
+            "children": [
+              {
+                "ref": {
+                  "name": "LazyList",
+                  "refId": "LazyList",
+                  "arguments": [
+                    {
+                      "name": "Finite",
+                      "refId": "Finite"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "xs",
+                "id": "xs"
+              },
+              {
+                "ref": {
+                  "name": "LazyList",
+                  "refId": "LazyList",
+                  "arguments": [
+                    {
+                      "name": "Finite",
+                      "refId": "Finite"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "ys",
+                "id": "ys"
+              }
+            ],
+            "id": "_conv2()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "Enumeration",
+              "refId": "Enumeration",
+              "arguments": [
+                {
+                  "name": "Pair",
+                  "refId": "Pair"
+                }
+              ]
+            },
+            "kind": "method",
+            "comment": "\nCartesian product.\n\n",
+            "name": "*",
+            "children": [
+              {
+                "ref": {
+                  "name": "Enumeration",
+                  "refId": "Enumeration",
+                  "arguments": [
+                    {
+                      "name": "A",
+                      "refId": "A"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "e",
+                "id": "e"
+              }
+            ],
+            "id": "*1()"
+          },
+          {
+            "returnType": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "method",
+            "comment": "\n[Enumeration] is an applicative functor.\n\n",
+            "name": "apply",
+            "children": [
+              {
+                "ref": {
+                  "name": "Enumeration",
+                  "refId": "Enumeration"
+                },
+                "kind": "param",
+                "name": "e",
+                "id": "e"
+              }
+            ],
+            "id": "apply1()"
+          },
+          {
+            "returnType": {
+              "name": "Enumeration",
+              "refId": "Enumeration",
+              "arguments": [
+                {
+                  "name": "A",
+                  "refId": "A"
+                }
+              ]
+            },
+            "kind": "method",
+            "comment": "\nPays for one recursive call.\n\n",
+            "name": "pay",
+            "id": "pay0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "toString",
+            "id": "toString0()"
+          },
+          {
+            "ref": {
+              "name": "LazyList",
+              "refId": "LazyList",
+              "arguments": [
+                {
+                  "name": "Finite",
+                  "refId": "Finite",
+                  "arguments": [
+                    {
+                      "name": "A",
+                      "refId": "A"
+                    }
+                  ]
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "parts",
+            "id": "parts"
+          },
+          {
+            "ref": {
+              "name": "Thunk",
+              "refId": "Thunk",
+              "arguments": [
+                {
+                  "name": "LazyList",
+                  "refId": "LazyList",
+                  "arguments": [
+                    {
+                      "name": "Finite",
+                      "refId": "Finite",
+                      "arguments": [
+                        {
+                          "name": "A",
+                          "refId": "A"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "thunk",
+            "id": "thunk"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Enumeration",
+            "children": [
+              {
+                "ref": {
+                  "name": "Thunk",
+                  "refId": "Thunk",
+                  "arguments": [
+                    {
+                      "name": "LazyList",
+                      "refId": "LazyList",
+                      "arguments": [
+                        {
+                          "name": "Finite",
+                          "refId": "Finite",
+                          "arguments": [
+                            {
+                              "name": "A",
+                              "refId": "A"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "thunk",
+                "id": "thunk"
+              }
+            ],
+            "id": "Enumeration1()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Enumeration.empty",
+            "id": "Enumeration.empty0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Enumeration.singleton",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "x",
+                "id": "x"
+              }
+            ],
+            "id": "Enumeration.singleton1()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Enumeration.fix",
+            "children": [
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "f",
+                "id": "f"
+              }
+            ],
+            "id": "Enumeration.fix1()"
+          }
+        ],
+        "id": "Enumeration"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "name": "Thunk",
+        "children": [
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Thunk",
+            "children": [
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "gen",
+                "id": "gen"
+              }
+            ],
+            "id": "Thunk1()"
+          },
+          {
+            "returnType": {
+              "name": "A",
+              "refId": "A"
+            },
+            "kind": "method",
+            "name": "value",
+            "id": "value0()"
+          },
+          {
+            "ref": {
+              "name": "A",
+              "refId": "A"
+            },
+            "kind": "property",
+            "name": "value",
+            "id": "value"
+          },
+          {
+            "ref": {
+              "name": "A",
+              "refId": "A"
+            },
+            "kind": "property",
+            "name": "_cached",
+            "id": "_cached"
+          },
+          {
+            "ref": {
+              "name": "Function",
+              "refId": "Function"
+            },
+            "kind": "property",
+            "name": "gen",
+            "id": "gen"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Thunk",
+            "children": [
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "gen",
+                "id": "gen"
+              }
+            ],
+            "id": "Thunk1()"
+          }
+        ],
+        "id": "Thunk"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "name": "Finite",
+        "children": [
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "card",
+            "id": "card0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Finite",
+            "id": "Finite0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Finite.empty",
+            "id": "Finite.empty0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Finite.singleton",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "x",
+                "id": "x"
+              }
+            ],
+            "id": "Finite.singleton1()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "Finite",
+              "refId": "Finite",
+              "arguments": [
+                {
+                  "name": "A",
+                  "refId": "A"
+                }
+              ]
+            },
+            "kind": "method",
+            "comment": "\nUnion.\n\n",
+            "name": "+",
+            "children": [
+              {
+                "ref": {
+                  "name": "Finite",
+                  "refId": "Finite",
+                  "arguments": [
+                    {
+                      "name": "A",
+                      "refId": "A"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "fin",
+                "id": "fin"
+              }
+            ],
+            "id": "+1()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "Finite",
+              "refId": "Finite",
+              "arguments": [
+                {
+                  "name": "Pair",
+                  "refId": "Pair"
+                }
+              ]
+            },
+            "kind": "method",
+            "comment": "\nCartesian product.\n\n",
+            "name": "*",
+            "children": [
+              {
+                "ref": {
+                  "name": "Finite",
+                  "refId": "Finite"
+                },
+                "kind": "param",
+                "name": "fin",
+                "id": "fin"
+              }
+            ],
+            "id": "*1()"
+          },
+          {
+            "returnType": {
+              "name": "Finite",
+              "refId": "Finite"
+            },
+            "kind": "method",
+            "comment": "\n[Finite] is a functor.\n\n",
+            "name": "map",
+            "children": [
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "f",
+                "id": "f"
+              }
+            ],
+            "id": "map1()"
+          },
+          {
+            "returnType": {
+              "name": "Finite",
+              "refId": "Finite"
+            },
+            "kind": "method",
+            "comment": "\n[Finite] is an applicative functor.\n\n",
+            "name": "apply",
+            "children": [
+              {
+                "ref": {
+                  "name": "Finite",
+                  "refId": "Finite"
+                },
+                "kind": "param",
+                "name": "fin",
+                "id": "fin"
+              }
+            ],
+            "id": "apply1()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "A",
+              "refId": "A"
+            },
+            "kind": "method",
+            "name": "[]",
+            "children": [
+              {
+                "ref": {
+                  "name": "int",
+                  "refId": "int"
+                },
+                "kind": "param",
+                "name": "index",
+                "id": "index"
+              }
+            ],
+            "id": "[]1()"
+          },
+          {
+            "isStatic": true,
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "_eval",
+            "children": [
+              {
+                "ref": {
+                  "name": "Finite",
+                  "refId": "Finite"
+                },
+                "kind": "param",
+                "name": "finite",
+                "id": "finite"
+              },
+              {
+                "ref": {
+                  "name": "int",
+                  "refId": "int"
+                },
+                "kind": "param",
+                "name": "index",
+                "id": "index"
+              }
+            ],
+            "id": "_eval2()"
+          },
+          {
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "name": "toString",
+            "id": "toString0()"
+          },
+          {
+            "returnType": {
+              "name": "LazyList",
+              "refId": "LazyList",
+              "arguments": [
+                {
+                  "name": "A",
+                  "refId": "A"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "toLazyList",
+            "id": "toLazyList0()"
+          },
+          {
+            "ref": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "property",
+            "name": "card",
+            "id": "card"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Finite",
+            "id": "Finite0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Finite.empty",
+            "id": "Finite.empty0()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Finite.singleton",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "x",
+                "id": "x"
+              }
+            ],
+            "id": "Finite.singleton1()"
+          }
+        ],
+        "id": "Finite"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "name": "Pair",
+        "children": [
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Pair",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "fst",
+                "id": "fst"
+              },
+              {
+                "ref": {
+                  "name": "B",
+                  "refId": "B"
+                },
+                "kind": "param",
+                "name": "snd",
+                "id": "snd"
+              }
+            ],
+            "id": "Pair2()"
+          },
+          {
+            "returnType": {
+              "name": "Pair",
+              "refId": "Pair",
+              "arguments": [
+                {
+                  "name": "A",
+                  "refId": "A"
+                },
+                {
+                  "name": "B",
+                  "refId": "B"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "setFst",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "x",
+                "id": "x"
+              }
+            ],
+            "id": "setFst1()"
+          },
+          {
+            "returnType": {
+              "name": "Pair",
+              "refId": "Pair",
+              "arguments": [
+                {
+                  "name": "A",
+                  "refId": "A"
+                },
+                {
+                  "name": "B",
+                  "refId": "B"
+                }
+              ]
+            },
+            "kind": "method",
+            "name": "setSnd",
+            "children": [
+              {
+                "ref": {
+                  "name": "B",
+                  "refId": "B"
+                },
+                "kind": "param",
+                "name": "x",
+                "id": "x"
+              }
+            ],
+            "id": "setSnd1()"
+          },
+          {
+            "returnType": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "method",
+            "name": "hashCode",
+            "id": "hashCode0()"
+          },
+          {
+            "isOperator": true,
+            "returnType": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "method",
+            "name": "==",
+            "children": [
+              {
+                "ref": {
+                  "name": "Pair",
+                  "refId": "Pair",
+                  "arguments": [
+                    {
+                      "name": "A",
+                      "refId": "A"
+                    },
+                    {
+                      "name": "B",
+                      "refId": "B"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "other",
+                "id": "other"
+              }
+            ],
+            "id": "==1()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "toString",
+            "id": "toString0()"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "property",
+            "name": "hashCode",
+            "id": "hashCode"
+          },
+          {
+            "ref": {
+              "name": "A",
+              "refId": "A"
+            },
+            "kind": "property",
+            "name": "fst",
+            "id": "fst"
+          },
+          {
+            "ref": {
+              "name": "B",
+              "refId": "B"
+            },
+            "kind": "property",
+            "name": "snd",
+            "id": "snd"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Pair",
+            "children": [
+              {
+                "ref": {
+                  "name": "A",
+                  "refId": "A"
+                },
+                "kind": "param",
+                "name": "fst",
+                "id": "fst"
+              },
+              {
+                "ref": {
+                  "name": "B",
+                  "refId": "B"
+                },
+                "kind": "param",
+                "name": "snd",
+                "id": "snd"
+              }
+            ],
+            "id": "Pair2()"
+          }
+        ],
+        "id": "Pair"
+      }
+    ],
+    "id": "package:enumerators/enumerators.dart"
+  },
+  {
+    "kind": "library",
+    "name": "propcheck",
+    "children": [
+      {
+        "returnType": {
+          "name": "Property",
+          "refId": "Property"
+        },
+        "kind": "method",
+        "name": "forall4",
+        "children": [
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "param",
+            "name": "enumeration1",
+            "id": "enumeration1"
+          },
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "param",
+            "name": "enumeration2",
+            "id": "enumeration2"
+          },
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "param",
+            "name": "enumeration3",
+            "id": "enumeration3"
+          },
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "param",
+            "name": "enumeration4",
+            "id": "enumeration4"
+          },
+          {
+            "ref": {
+              "name": "Function",
+              "refId": "Function"
+            },
+            "kind": "param",
+            "name": "property",
+            "id": "property"
+          }
+        ],
+        "id": "forall45()"
+      },
+      {
+        "returnType": {
+          "name": "Property",
+          "refId": "Property"
+        },
+        "kind": "method",
+        "name": "forall3",
+        "children": [
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "param",
+            "name": "enumeration1",
+            "id": "enumeration1"
+          },
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "param",
+            "name": "enumeration2",
+            "id": "enumeration2"
+          },
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "param",
+            "name": "enumeration3",
+            "id": "enumeration3"
+          },
+          {
+            "ref": {
+              "name": "Function",
+              "refId": "Function"
+            },
+            "kind": "param",
+            "name": "property",
+            "id": "property"
+          }
+        ],
+        "id": "forall34()"
+      },
+      {
+        "returnType": {
+          "name": "Property",
+          "refId": "Property"
+        },
+        "kind": "method",
+        "name": "forall2",
+        "children": [
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "param",
+            "name": "enumeration1",
+            "id": "enumeration1"
+          },
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "param",
+            "name": "enumeration2",
+            "id": "enumeration2"
+          },
+          {
+            "ref": {
+              "name": "Function",
+              "refId": "Function"
+            },
+            "kind": "param",
+            "name": "property",
+            "id": "property"
+          }
+        ],
+        "id": "forall23()"
+      },
+      {
+        "returnType": {
+          "name": "Property",
+          "refId": "Property"
+        },
+        "kind": "method",
+        "name": "forall",
+        "children": [
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration"
+            },
+            "kind": "param",
+            "name": "enumeration",
+            "id": "enumeration"
+          },
+          {
+            "ref": {
+              "name": "Function",
+              "refId": "Function"
+            },
+            "kind": "param",
+            "name": "property",
+            "id": "property"
+          }
+        ],
+        "id": "forall2()"
+      },
+      {
+        "superclass": {
+          "name": "Check",
+          "refId": "Check"
+        },
+        "kind": "class",
+        "name": "QuickCheck",
+        "children": [
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "QuickCheck",
+            "children": [
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "seed",
+                "id": "seed"
+              },
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "maxSuccesses",
+                "id": "maxSuccesses"
+              },
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "maxSize",
+                "id": "maxSize"
+              },
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "quiet",
+                "id": "quiet"
+              }
+            ],
+            "id": "QuickCheck4()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "name": "check",
+            "children": [
+              {
+                "ref": {
+                  "name": "Property",
+                  "refId": "Property"
+                },
+                "kind": "param",
+                "name": "property",
+                "id": "property"
+              }
+            ],
+            "id": "check1()"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "property",
+            "name": "seed",
+            "id": "seed"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "property",
+            "name": "maxSize",
+            "id": "maxSize"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "QuickCheck",
+            "children": [
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "seed",
+                "id": "seed"
+              },
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "maxSuccesses",
+                "id": "maxSuccesses"
+              },
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "maxSize",
+                "id": "maxSize"
+              },
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "quiet",
+                "id": "quiet"
+              }
+            ],
+            "id": "QuickCheck4()"
+          }
+        ],
+        "id": "QuickCheck"
+      },
+      {
+        "superclass": {
+          "name": "Check",
+          "refId": "Check"
+        },
+        "kind": "class",
+        "name": "SmallCheck",
+        "children": [
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "SmallCheck",
+            "children": [
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "depth",
+                "id": "depth"
+              },
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "quiet",
+                "id": "quiet"
+              }
+            ],
+            "id": "SmallCheck2()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "name": "check",
+            "children": [
+              {
+                "ref": {
+                  "name": "Property",
+                  "refId": "Property"
+                },
+                "kind": "param",
+                "name": "property",
+                "id": "property"
+              }
+            ],
+            "id": "check1()"
+          },
+          {
+            "ref": {
+              "name": "int",
+              "refId": "int"
+            },
+            "kind": "property",
+            "name": "depth",
+            "id": "depth"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "SmallCheck",
+            "children": [
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "depth",
+                "id": "depth"
+              },
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "isOptional": true,
+                "kind": "param",
+                "name": "quiet",
+                "id": "quiet"
+              }
+            ],
+            "id": "SmallCheck2()"
+          }
+        ],
+        "id": "SmallCheck"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "name": "Check",
+        "children": [
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Check",
+            "children": [
+              {
+                "ref": {
+                  "name": "bool",
+                  "refId": "bool"
+                },
+                "kind": "param",
+                "name": "quiet",
+                "id": "quiet"
+              }
+            ],
+            "id": "Check1()"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "check",
+            "children": [
+              {
+                "ref": {
+                  "name": "Dynamic_",
+                  "refId": "Dynamic_"
+                },
+                "kind": "param",
+                "name": "Property",
+                "id": "Property"
+              }
+            ],
+            "id": "check1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "name": "display",
+            "children": [
+              {
+                "ref": {
+                  "name": "String",
+                  "refId": "String"
+                },
+                "kind": "param",
+                "name": "message",
+                "id": "message"
+              }
+            ],
+            "id": "display1()"
+          },
+          {
+            "returnType": {
+              "name": "void",
+              "refId": "void"
+            },
+            "kind": "method",
+            "name": "clear",
+            "id": "clear0()"
+          },
+          {
+            "isStatic": true,
+            "returnType": {
+              "name": "String",
+              "refId": "String"
+            },
+            "kind": "method",
+            "name": "_errorMessage",
+            "children": [
+              {
+                "ref": {
+                  "name": "int",
+                  "refId": "int"
+                },
+                "kind": "param",
+                "name": "counter",
+                "id": "counter"
+              },
+              {
+                "ref": {
+                  "name": "_Product",
+                  "refId": "_Product"
+                },
+                "kind": "param",
+                "name": "prod",
+                "id": "prod"
+              }
+            ],
+            "id": "_errorMessage2()"
+          },
+          {
+            "ref": {
+              "name": "bool",
+              "refId": "bool"
+            },
+            "kind": "property",
+            "name": "quiet",
+            "id": "quiet"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Check",
+            "children": [
+              {
+                "ref": {
+                  "name": "bool",
+                  "refId": "bool"
+                },
+                "kind": "param",
+                "name": "quiet",
+                "id": "quiet"
+              }
+            ],
+            "id": "Check1()"
+          }
+        ],
+        "id": "Check"
+      },
+      {
+        "superclass": {
+          "name": "Object",
+          "refId": "Object"
+        },
+        "kind": "class",
+        "name": "Property",
+        "children": [
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "method",
+            "name": "Property",
+            "children": [
+              {
+                "ref": {
+                  "name": "Enumeration",
+                  "refId": "Enumeration",
+                  "arguments": [
+                    {
+                      "name": "_Product",
+                      "refId": "_Product"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "enum",
+                "id": "enum"
+              },
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "property",
+                "id": "property"
+              }
+            ],
+            "id": "Property2()"
+          },
+          {
+            "ref": {
+              "name": "Enumeration",
+              "refId": "Enumeration",
+              "arguments": [
+                {
+                  "name": "_Product",
+                  "refId": "_Product"
+                }
+              ]
+            },
+            "kind": "property",
+            "name": "enum",
+            "id": "enum"
+          },
+          {
+            "ref": {
+              "name": "Function",
+              "refId": "Function"
+            },
+            "kind": "property",
+            "name": "property",
+            "id": "property"
+          },
+          {
+            "returnType": {
+              "name": "Dynamic_",
+              "refId": "Dynamic_"
+            },
+            "kind": "constructor",
+            "name": "Property",
+            "children": [
+              {
+                "ref": {
+                  "name": "Enumeration",
+                  "refId": "Enumeration",
+                  "arguments": [
+                    {
+                      "name": "_Product",
+                      "refId": "_Product"
+                    }
+                  ]
+                },
+                "kind": "param",
+                "name": "enum",
+                "id": "enum"
+              },
+              {
+                "ref": {
+                  "name": "Function",
+                  "refId": "Function"
+                },
+                "kind": "param",
+                "name": "property",
+                "id": "property"
+              }
+            ],
+            "id": "Property2()"
+          }
+        ],
+        "id": "Property"
+      }
+    ],
+    "id": "file:///tmp/tmp.ps7EW00jOq/dart-check/lib/propcheck.dart"
+  }
+]
