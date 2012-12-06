@@ -4,7 +4,5 @@ version: 0.0.1
 author: Paul Brauner <polux@google.com>
 homepage: https://code.google.com/p/dart-check/
 dependencies:
-  dart_enumerators:
-    git: https://code.google.com/p/dart-enumerators/
+  enumerators:
   unittest:
-    sdk: unittest

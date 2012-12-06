@@ -15,7 +15,7 @@
 // Author: Paul Brauner (polux@google.com)
 
 import 'package:dart_check/dart_check.dart';
-import 'package:dart_enumerators/combinators.dart' as c;
+import 'package:enumerators/combinators.dart' as c;
 import 'package:unittest/unittest.dart';
 
 void smallCheckPerformsCheck() {

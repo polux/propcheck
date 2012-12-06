@@ -18,7 +18,7 @@ library dart_check;
 
 import 'dart:io';
 import 'dart:math';
-import 'package:dart_enumerators/enumerators.dart';
+import 'package:enumerators/enumerators.dart';
 
 part 'src/products.dart';
 

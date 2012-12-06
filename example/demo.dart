@@ -17,7 +17,7 @@
 library demo;
 
 import 'package:dart_check/dart_check.dart';
-import 'package:dart_enumerators/combinators.dart' as c;
+import 'package:enumerators/combinators.dart' as c;
 import 'package:unittest/unittest.dart';
 
 // Defines append and reverse.
