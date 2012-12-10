@@ -1,0 +1,6 @@
+.project
+example/packages
+packages/
+pubspec.lock
+test/packages
+tool/packages
