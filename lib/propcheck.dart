@@ -47,7 +47,7 @@ abstract class Check {
 
   void display(String message) {
     if (!quiet) {
-      stdout.writeString("\r\u001b[K$message");
+      stdout.addString("\r\u001b[K$message");
     }
   }
 
@@ -57,7 +57,7 @@ abstract class Check {
     final res = new StringBuffer("falsified after $counter tests\n");
     final args = prod.toStrings();
     for (int i = 0; i < args.length; i++) {
-      res.add("  argument ${i+1}: ${args[i]}\n");
+      res.write("  argument ${i+1}: ${args[i]}\n");
     }
     return res.toString();
   }
