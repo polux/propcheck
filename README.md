@@ -1,4 +1,4 @@
-# Exhaustive and Randomized Testing of Properties
+# Exhaustive and Randomized Testing
 
 A library for exhaustive and randomized testing of Dart properties, based on
 [enumerators](http://code.google.com/p/dart-enumerators/). It is inspired by
