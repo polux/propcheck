@@ -113,7 +113,7 @@ class QuickCheck extends Check {
     int counter = 0;
     while (counter <= maxSize && !parts.isEmpty()) {
       if (parts.head.card > 0) {
-        nonEmptyParts.addLast(new Pair(counter, parts.head));
+        nonEmptyParts.add(new Pair(counter, parts.head));
       }
       counter++;
       parts = parts.tail;
