@@ -5,6 +5,14 @@
 
 part of demo;
 
+bool equals(List xs, List ys) {
+  if (xs.length != ys.length) return false;
+  for (int i = 0; i < xs.length; i++) {
+    if (xs[i] != ys[i]) return false;
+  }
+  return true;
+}
+
 List reverse(List xs) {
   List res = [];
   for (int i = xs.length - 1; i >= 0; i--) {
@@ -19,4 +27,3 @@ List append(List xs, List ys) {
   res.addAll(ys);
   return res;
 }
-

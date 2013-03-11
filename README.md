@@ -24,13 +24,13 @@ part 'demolib.dart';
 
 // this should always hold
 bool good(List xs, List ys) =>
-    Arrays.areEqual(reverse(append(xs, ys)),
-                    append(reverse(ys), reverse(xs)));
+    equals(reverse(append(xs, ys)),
+           append(reverse(ys), reverse(xs)));
 
 // this should NOT always hold
 bool bad(List xs, List ys) =>
-    Arrays.areEqual(reverse(append(xs, ys)),
-                    append(reverse(xs), reverse(ys)));
+    equals(reverse(append(xs, ys)),
+           append(reverse(xs), reverse(ys)));
 
 /* --- how we test them --- */
 
@@ -92,4 +92,5 @@ pub install
 dart example/demo.dart
 ```
 
-Enjoy the progress indicator, probably the most elaborate part of this library :)
+Enjoy the progress indicator, probably the most elaborate part of this 
+library :)
