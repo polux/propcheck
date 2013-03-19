@@ -47,7 +47,7 @@ abstract class Check {
 
   void display(String message) {
     if (!quiet) {
-      stdout.addString("\r\u001b[K$message");
+      stdout.write("\r\u001b[K$message");
     }
   }
 
