@@ -71,17 +71,16 @@ class SmallCheck extends Check {
       , super(quiet);
 
   void check(Property property) {
-    LazyList<Finite> parts = property.enum.parts.take(depth + 1);
+    final parts = property.enum.parts.take(depth + 1);
     int total = 0;
-    for(var it = parts; !it.isEmpty(); it = it.tail) {
-      total += it.head.card;
+    for (final part in parts) {
+      total += part.length;
     }
 
     int counter = 0;
     int currentDepth = 0;
-    for(var it = parts; !it.isEmpty(); it = it.tail) {
-      final part = it.head;
-      int card = part.card;
+    for (final part in parts) {
+      int card = part.length;
       for(int i = 0; i < card; i++) {
         display("${counter+1}/$total (depth $currentDepth: ${i+1}/$card)");
         _Product arg = part[i];
@@ -109,14 +108,14 @@ class QuickCheck extends Check {
   void check(Property property) {
     final random = new Random(seed);
     final nonEmptyParts = <Pair<int,Finite>>[];
-    var parts = property.enum.parts;
     int counter = 0;
-    while (counter <= maxSize && !parts.isEmpty()) {
-      if (parts.head.card > 0) {
-        nonEmptyParts.add(new Pair(counter, parts.head));
+    final iterator = property.enum.parts.iterator;
+    while (counter <= maxSize && iterator.moveNext()) {
+      final part = iterator.current;
+      if (part.length > 0) {
+        nonEmptyParts.add(new Pair(counter, part));
       }
       counter++;
-      parts = parts.tail;
     }
     int numParts = nonEmptyParts.length;
     for (int i = 0; i < numParts; i++) {
@@ -125,7 +124,7 @@ class QuickCheck extends Check {
       final part = pair.snd;
       display("${i+1}/$numParts (size $size)");
       // TODO: replace by randInt when it handles bigints
-      int index = ((part.card-1) * random.nextDouble()).toInt();
+      int index = ((part.length-1) * random.nextDouble()).toInt();
       _Product arg = part[index];
       if (!property.property(arg)) {
         clear();
