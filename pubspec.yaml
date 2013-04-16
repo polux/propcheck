@@ -1,10 +1,12 @@
 name: propcheck
-version: 0.2.0
+version: 0.3.0
 author: Paul Brauner <polux@google.com>
 description: A library for exhaustive and randomized testing of Dart properties
 homepage: https://code.google.com/p/dart-check/
 documentation: http://goo.gl/PlZPl
+environment:
+  sdk: '>=0.4.7'
 dependencies:
-  enumerators: '>=0.3.0 <0.4.0'
+  enumerators: '>=0.4.0 <0.5.0'
 dev_dependencies:
   unittest: any
