@@ -40,16 +40,17 @@ void quickCheckHonorsMaxSize() {
 
 void quickCheckHonorsMaxSize2() {
   // represents the enumeration { 0: [42, 43], 1: [44] }
-  final enum = e.singleton(42)
-             + e.singleton(43)
-             + e.singleton(44).pay();
+  final enumeration = e.singleton(42)
+                    + e.singleton(43)
+                    + e.singleton(44).pay();
 
   int counter = 0;
   bool test(int n) {
     counter++;
     return true;
   }
-  new QuickCheck(maxSuccesses: 100, quiet: true).check(forall(enum, test));
+  new QuickCheck(maxSuccesses: 100, quiet: true).check(forall(enumeration,
+                                                              test));
   expect(counter, equals(2),
          reason: "test wasn't called 2 times");
 }

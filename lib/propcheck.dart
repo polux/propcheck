@@ -12,9 +12,9 @@ import 'package:enumerators/enumerators.dart';
 part 'src/products.dart';
 
 class Property {
-  final Enumeration<_Product> enum;
+  final Enumeration<_Product> enumeration;
   final Function property;
-  Property(this.enum, this.property);
+  Property(this.enumeration, this.property);
 }
 
 Property forall(Enumeration enumeration, bool property(x)) =>
@@ -71,7 +71,7 @@ class SmallCheck extends Check {
       , super(quiet);
 
   void check(Property property) {
-    final parts = property.enum.parts.take(depth + 1);
+    final parts = property.enumeration.parts.take(depth + 1);
     int total = 0;
     for (final part in parts) {
       total += part.length;
@@ -109,7 +109,7 @@ class QuickCheck extends Check {
     final random = new Random(seed);
     final nonEmptyParts = <Pair<int,Finite>>[];
     int counter = 0;
-    final iterator = property.enum.parts.iterator;
+    final iterator = property.enumeration.parts.iterator;
     while (counter <= maxSize && iterator.moveNext()) {
       final part = iterator.current;
       if (part.length > 0) {
