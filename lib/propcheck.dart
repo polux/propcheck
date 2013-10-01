@@ -97,6 +97,7 @@ class SmallCheck extends Check {
 }
 
 class QuickCheck extends Check {
+  static const MAX_INT = ((1 << 32) - 1);
   final int seed;
   final int maxSize;
 
@@ -123,8 +124,18 @@ class QuickCheck extends Check {
       final size = pair.fst;
       final part = pair.snd;
       display("${i+1}/$numParts (size $size)");
+
       // TODO: replace by randInt when it handles bigints
-      int index = ((part.length-1) * random.nextDouble()).toInt();
+      int maxIndex = part.length - 1;
+      int index;
+      if (maxIndex < MAX_INT) {
+        index = random.nextInt(maxIndex);
+      } else {
+        // poor resolution, would need real bigint rng
+        int numerator = random.nextInt(MAX_INT);
+        index = ((part.length-1) * numerator) ~/ MAX_INT;
+      }
+
       _Product arg = part[index];
       if (!property.property(arg)) {
         clear();
