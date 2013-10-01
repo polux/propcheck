@@ -128,7 +128,9 @@ class QuickCheck extends Check {
       // TODO: replace by randInt when it handles bigints
       int maxIndex = part.length - 1;
       int index;
-      if (maxIndex < MAX_INT) {
+      if (maxIndex == 0) {
+        index = 0;
+      } else if (maxIndex < MAX_INT) {
         index = random.nextInt(maxIndex);
       } else {
         // poor resolution, would need real bigint rng
