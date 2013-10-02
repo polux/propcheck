@@ -1,1 +1,1 @@
-{"location":"0","name":"dart:","dependencies":[],"description":"Dart System Libraries","libraries":[{"name":"package:enumerators/enumerators.dart","refId":"enumerators"},{"name":"file:///tmp/tmp.zHozRTOk3W/dart-check/lib/propcheck.dart","refId":"propcheck"}],"revision":"0"}
+{"name":"dart:","description":"Dart System Libraries","libraries":[{"name":"package:enumerators/enumerators.dart","refId":"enumerators"},{"refId":"propcheck"}],"revision":"0","location":"0","dependencies":[]}

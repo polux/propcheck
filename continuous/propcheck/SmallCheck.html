@@ -5,7 +5,7 @@
         <title>SmallCheck class / propcheck Library / Dart Documentation</title>
         <link rel="stylesheet" type="text/css"
             href="../styles.css">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../favicon.ico">
         
         </head>
@@ -41,17 +41,16 @@ class SmallCheck extends Check {
      , super(quiet);
 
  void check(Property property) {
-   LazyList&lt;Finite&gt; parts = property.enum.parts.take(depth + 1);
+   final parts = property.enumeration.parts.take(depth + 1);
    int total = 0;
-   for(var it = parts; !it.isEmpty(); it = it.tail) {
-     total += it.head.card;
+   for (final part in parts) {
+     total += part.length;
    }
 
    int counter = 0;
    int currentDepth = 0;
-   for(var it = parts; !it.isEmpty(); it = it.tail) {
-     final part = it.head;
-     int card = part.card;
+   for (final part in parts) {
+     int card = part.length;
      for(int i = 0; i &lt; card; i++) {
        display("${counter+1}/$total (depth $currentDepth: ${i+1}/$card)");
        _Product arg = part[i];
@@ -73,11 +72,17 @@ class SmallCheck extends Check {
 <span class="type-box"><span class="icon-class"></span><a href="../propcheck/Check.html">Check</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>SmallCheck</strong></span></p>
 <div>
 <h3>Constructors</h3>
-<div class="method"><h4 id="SmallCheck">
+<div class="method"><h4 id="">
 <button class="show-code">Code</button>
-new <strong>SmallCheck</strong>({depth: 4, quiet: false}) <a class="anchor-link" href="#SmallCheck"
+new <strong>SmallCheck</strong>({depth: 4, quiet: false}) <a class="anchor-link" href="#"
               title="Permalink to SmallCheck.SmallCheck">#</a></h4>
 <div class="doc">
+<div class="inherited">
+<p>Creates a new <a class="crossref" href="../dart_core/Object.html">Object</a> instance.</p>
+<p><a class="crossref" href="../dart_core/Object.html">Object</a> instances have no meaningful state, and are only useful
+through their identity. An <a class="crossref" href="../dart_core/Object.html">Object</a> instance is equal to itself
+only.</p>
+<div class="docs-inherited-from">docs inherited from <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> </div></div>
 <pre class="source">
 SmallCheck({depth: 4, quiet: false})
    : this.depth = depth
@@ -96,7 +101,7 @@ final <a href="http://api.dartlang.org/dart_core/int.html">int</a>         <stro
         </h4>
         <div class="doc">
 <pre class="source">
-depth
+final int depth
 </pre>
 </div>
 </div>
@@ -108,7 +113,7 @@ final <a href="http://api.dartlang.org/dart_core/bool.html">bool</a>         <st
         </h4>
         <div class="inherited-from">inherited from <a href="../propcheck/Check.html">Check</a> </div><div class="doc">
 <pre class="source">
-quiet
+final bool quiet
 </pre>
 </div>
 </div>
@@ -122,17 +127,16 @@ void <strong>check</strong>(<a href="../propcheck/Property.html">Property</a> pr
 <div class="doc">
 <pre class="source">
 void check(Property property) {
- LazyList&lt;Finite&gt; parts = property.enum.parts.take(depth + 1);
+ final parts = property.enumeration.parts.take(depth + 1);
  int total = 0;
- for(var it = parts; !it.isEmpty(); it = it.tail) {
-   total += it.head.card;
+ for (final part in parts) {
+   total += part.length;
  }
 
  int counter = 0;
  int currentDepth = 0;
- for(var it = parts; !it.isEmpty(); it = it.tail) {
-   final part = it.head;
-   int card = part.card;
+ for (final part in parts) {
+   int card = part.length;
    for(int i = 0; i &lt; card; i++) {
      display("${counter+1}/$total (depth $currentDepth: ${i+1}/$card)");
      _Product arg = part[i];
@@ -167,7 +171,7 @@ void <strong>display</strong>(<a href="http://api.dartlang.org/dart_core/String.
 <pre class="source">
 void display(String message) {
  if (!quiet) {
-   stdout.addString("\r\u001b[K$message");
+   stdout.write("\r\u001b[K$message");
  }
 }
 </pre>
@@ -178,7 +182,7 @@ void display(String message) {
         <div class="clear"></div>
         </div>
         <div class="footer">
-          <div>This page was generated at 2013-02-27 23:18:50.831</div>
+          <div>This page was generated at 2013-10-03 01:55:36.809</div>
         </div>
         <script async src="../client-live-nav.js"></script>
         </body></html>
