@@ -1,13 +1,17 @@
-# Exhaustive and Randomized Testing
+# Exhaustive and Randomized Testing for Dart
 
 A library for exhaustive and randomized testing of Dart properties, based on
-[enumerators](http://code.google.com/p/dart-enumerators/). It is inspired by
+[enumerators](http://pub.dartlang.org/packages/enumerators). It is inspired by
 Haskell's [smallcheck](http://hackage.haskell.org/package/smallcheck) and
 [quickcheck](http://hackage.haskell.org/package/QuickCheck). If you don't know
 these libraries, have a look at the small demo below to get an idea of what it
 can be useful for. I also wrote a
 [post](https://plus.google.com/u/0/110708326411316526253/posts/NVQj6zJWzap)
 that goes into more details.
+
+## Documentation
+
+The only documentation so far is this README and the [API reference](http://polux.github.io/propcheck/continuous/propcheck.html).
 
 ## Quick Start
 
@@ -86,8 +90,8 @@ FAIL: quickcheck bad
 ## Try it!
 
 ```
-git clone https://code.google.com/p/dart-check/
-cd dart-check
+git clone https://github.com/polux/propcheck
+cd propcheck
 pub install
 dart example/demo.dart
 ```
