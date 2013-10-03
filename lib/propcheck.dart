@@ -10,6 +10,7 @@ import 'dart:math';
 import 'package:enumerators/enumerators.dart';
 
 part 'src/products.dart';
+part 'src/random.dart';
 
 class Property {
   final Enumeration<_Product> enumeration;
@@ -124,20 +125,7 @@ class QuickCheck extends Check {
       final size = pair.fst;
       final part = pair.snd;
       display("${i+1}/$numParts (size $size)");
-
-      // TODO: replace by randInt when it handles bigints
-      int maxIndex = part.length - 1;
-      int index;
-      if (maxIndex == 0) {
-        index = 0;
-      } else if (maxIndex < MAX_INT) {
-        index = random.nextInt(maxIndex);
-      } else {
-        // poor resolution, would need real bigint rng
-        int numerator = random.nextInt(MAX_INT);
-        index = ((part.length-1) * numerator) ~/ MAX_INT;
-      }
-
+      int index = _nextBigInt(random, part.length);
       _Product arg = part[index];
       if (!property.property(arg)) {
         clear();
