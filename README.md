@@ -1,4 +1,4 @@
-# Exhaustive and Randomized Testing for Dart
+# Exhaustive and Randomized Testing
 
 [![Build Status](https://drone.io/github.com/polux/propcheck/status.png)](https://drone.io/github.com/polux/propcheck/latest)
 
