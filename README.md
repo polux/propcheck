@@ -1,5 +1,7 @@
 # Exhaustive and Randomized Testing for Dart
 
+[![Build Status](https://drone.io/github.com/polux/propcheck/status.png)](https://drone.io/github.com/polux/propcheck/latest)
+
 A library for exhaustive and randomized testing of Dart properties, based on
 [enumerators](http://pub.dartlang.org/packages/enumerators). It is inspired by
 Haskell's [smallcheck](http://hackage.haskell.org/package/smallcheck) and
@@ -11,7 +13,8 @@ that goes into more details.
 
 ## Documentation
 
-The only documentation so far is this README and the [API reference](http://polux.github.io/propcheck/continuous/propcheck.html).
+The only documentation so far is this README and the
+[API reference](http://polux.github.io/propcheck/continuous/propcheck.html).
 
 ## Quick Start
 
