@@ -1,5 +1,5 @@
 name: propcheck
-version: 0.3.3
+version: 0.3.4
 author: Paul Brauner <polux@google.com>
 description: A library for exhaustive and randomized testing of Dart properties
 homepage: https://github.com/polux/propcheck
