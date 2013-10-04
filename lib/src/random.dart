@@ -7,12 +7,11 @@ part of propcheck;
 
 final int _MAX = pow(2, 32);
 
-double _logBase(int b, int n) => log(n) / log(b);
-
 int _nextBigInt(Random rand, int n) {
   if (n <= _MAX) return rand.nextInt(n);
-
-  int dims = _logBase(_MAX, n).ceil();
+  // slow log, use something faster
+  int dims = 1;
+  while (pow(_MAX, dims) < n) dims++;
   int cells = pow(_MAX, dims);
   int limit = cells - (cells % n);
   int result;
