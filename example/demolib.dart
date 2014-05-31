@@ -3,27 +3,10 @@
 
 // Author: Paul Brauner (polux@google.com)
 
-part of demo;
+library demolib;
 
-bool equals(List xs, List ys) {
-  if (xs.length != ys.length) return false;
-  for (int i = 0; i < xs.length; i++) {
-    if (xs[i] != ys[i]) return false;
-  }
-  return true;
-}
+import 'package:collection/equality.dart';
 
-List reverse(List xs) {
-  List res = [];
-  for (int i = xs.length - 1; i >= 0; i--) {
-    res.add(xs[i]);
-  }
-  return res;
-}
-
-List append(List xs, List ys) {
-  List res = [];
-  res.addAll(xs);
-  res.addAll(ys);
-  return res;
-}
+bool listEquals(List xs, List ys) => const ListEquality().equals(xs, ys);
+List reverse(List xs) => xs.reversed.toList();
+List append(List xs, List ys) => new List.from(xs)..addAll(ys);

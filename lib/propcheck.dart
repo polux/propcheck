@@ -8,36 +8,39 @@ library propcheck;
 import 'dart:io';
 import 'dart:math';
 import 'package:enumerators/enumerators.dart';
+import 'package:enumerators/combinators.dart' show productsOf;
 
-part 'src/products.dart';
 part 'src/random.dart';
 
 class Property {
-  final Enumeration<_Product> enumeration;
+  final Enumeration<List> enumeration;
   final Function property;
   Property(this.enumeration, this.property);
 }
 
 Property forall(Enumeration enumeration, bool property(x)) =>
-    new Property(_P1.enumerate(enumeration),
-                 (_P1 p) => property(p.proj1));
+    new Property(productsOf([enumeration]),
+                 (tuple) => property(tuple[0]));
 
 Property forall2(Enumeration enumeration1, Enumeration enumeration2,
                  bool property(x, y)) =>
-    new Property(_P2.enumerate(enumeration1, enumeration2),
-                 (_P2 p) => property(p.proj1, p.proj2));
+    new Property(productsOf([enumeration1, enumeration2]),
+                 (tuple) => property(tuple[0], tuple[1]));
 
 Property forall3(Enumeration enumeration1, Enumeration enumeration2,
                  Enumeration enumeration3, bool property(x, y, z)) =>
-    new Property(_P3.enumerate(enumeration1, enumeration2, enumeration3),
-                 (_P3 p) => property(p.proj1, p.proj2, p.proj3));
+    new Property(productsOf([enumeration1, enumeration2, enumeration3]),
+                 (tuple) => property(tuple[0], tuple[1], tuple[2]));
 
 Property forall4(Enumeration enumeration1, Enumeration enumeration2,
                  Enumeration enumeration3, Enumeration enumeration4,
                  bool property(x, y, z, w)) =>
-    new Property(_P4.enumerate(enumeration1, enumeration2, enumeration3,
-                               enumeration4),
-                 (_P4 p) => property(p.proj1, p.proj2, p.proj3, p.proj4));
+    new Property(productsOf([enumeration1, enumeration2, enumeration3,
+                             enumeration4]),
+                 (tuple) => property(tuple[0], tuple[1], tuple[2], tuple[3]));
+
+Property forallN(List<Enumeration> enumerations, bool property(List args)) =>
+    new Property(productsOf(enumerations), property);
 
 abstract class Check {
   final bool quiet;
@@ -54,9 +57,9 @@ abstract class Check {
 
   void clear() => display('');
 
-  static String _errorMessage(int counter, _Product prod) {
+  static String _errorMessage(int counter, List tuple) {
     final res = new StringBuffer("falsified after $counter tests\n");
-    final args = prod.toStrings();
+    final args = tuple.map((x) => x.toString()).toList(growable: false);
     for (int i = 0; i < args.length; i++) {
       res.write("  argument ${i+1}: ${args[i]}\n");
     }
@@ -84,10 +87,10 @@ class SmallCheck extends Check {
       int card = part.length;
       for(int i = 0; i < card; i++) {
         display("${counter+1}/$total (depth $currentDepth: ${i+1}/$card)");
-        _Product arg = part[i];
-        if (!property.property(arg)) {
+        List tuple = part[i];
+        if (!property.property(tuple)) {
           clear();
-          throw Check._errorMessage(counter + 1, arg);
+          throw Check._errorMessage(counter + 1, tuple);
         }
         counter++;
       }
@@ -126,10 +129,10 @@ class QuickCheck extends Check {
       final part = pair.snd;
       display("${i+1}/$numParts (size $size)");
       int index = _nextBigInt(random, part.length);
-      _Product arg = part[index];
-      if (!property.property(arg)) {
+      List tuple = part[index];
+      if (!property.property(tuple)) {
         clear();
-        throw Check._errorMessage(i + 1, arg);
+        throw Check._errorMessage(i + 1, tuple);
       }
     }
     clear();

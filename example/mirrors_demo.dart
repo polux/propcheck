@@ -1,36 +1,29 @@
-// Copyright (c) 2012, Google Inc. All rights reserved. Use of this source code
-// is governed by a BSD-style license that can be found in the LICENSE file.
-
-// Author: Paul Brauner (polux@google.com)
-
-library demo;
+library mirrors_demo;
 
 import 'demolib.dart';
-import 'package:propcheck/propcheck.dart';
+import 'package:propcheck/propcheck_mirrors.dart';
 import 'package:enumerators/combinators.dart' as c;
 import 'package:unittest/unittest.dart' hide equals;
 
 /* --- the properties to test --- */
 
 // this should always hold
-bool good(List xs, List ys) =>
+bool good(List<bool> xs, List<bool> ys) =>
     listEquals(reverse(append(xs, ys)),
                append(reverse(ys), reverse(xs)));
 
 // this should NOT always hold
-bool bad(List xs, List ys) =>
+bool bad(List<bool> xs, List<bool> ys) =>
     listEquals(reverse(append(xs, ys)),
                append(reverse(xs), reverse(ys)));
 
 /* --- how we test them --- */
 
 main() {
-  // we define an enumeration of lists of integers
-  final boolsLists = c.listsOf(c.bools);
-
-  // 'good' and 'bad' take 2 arguments each so we use forall2
-  Property goodProperty = forall2(boolsLists, boolsLists, good);
-  Property badProperty = forall2(boolsLists, boolsLists, bad);
+  // 'good' and 'bad' are converted to properties by reflection on the declared
+  // typed of their parameters
+  Property goodProperty = property(good);
+  Property badProperty = property(bad);
 
   // we test the properties against *every* pair of lists of bools whose
   // combined size is <= 10.
