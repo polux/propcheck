@@ -2,7 +2,6 @@ library mirrors_demo;
 
 import 'demolib.dart';
 import 'package:propcheck/propcheck_mirrors.dart';
-import 'package:enumerators/combinators.dart' as c;
 import 'package:unittest/unittest.dart' hide equals;
 
 /* --- the properties to test --- */
