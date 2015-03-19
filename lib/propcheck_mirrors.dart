@@ -157,13 +157,13 @@ enumerators.Enumeration<List>
 
 List<List<TypeMirror>>
     _signatures(ClassMirror classMirror, List<Symbol> methods) {
-  List<TypeMirror> parameters(ctor) {
-    return (classMirror.declarations[ctor] as MethodMirror)
+  List<TypeMirror> parameterTypes(Symbol method) {
+    return (classMirror.declarations[method] as MethodMirror)
         .parameters
-        .map((p) => p.type)
+        .map((parameter) => parameter.type)
         .toList();
   }
-  return methods.map(parameters).toList();
+  return methods.map(parameterTypes).toList();
 }
 
 const _SIG_EQUALITY = const ListEquality(const ListEquality());
