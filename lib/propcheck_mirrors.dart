@@ -148,10 +148,22 @@ class _Issue implements _Result {
   }
 }
 
-enumerators.Enumeration<List> _enumerationForSignature(List<Type> signature) {
+enumerators.Enumeration<List>
+    _enumerationForSignature(List<TypeMirror> signature) {
   return combinators.productsOf(signature
       .map((parameter) => enumerationForTypeMirror(parameter))
       .toList());
+}
+
+List<List<TypeMirror>>
+    _signatures(ClassMirror classMirror, List<Symbol> methods) {
+  List<TypeMirror> parameters(ctor) {
+    return (classMirror.declarations[ctor] as MethodMirror)
+        .parameters
+        .map((p) => p.type)
+        .toList();
+  }
+  return methods.map(parameters).toList();
 }
 
 const _SIG_EQUALITY = const ListEquality(const ListEquality());
@@ -165,21 +177,14 @@ Property implementationMatchesModel(Type model,
   ClassMirror modelClass = reflectClass(model);
   ClassMirror implClass = reflectClass(implem);
 
-  List<List<Type>> signatures(classMirror, ctors) {
-    List<Type> parameters(ctor) {
-      return classMirror.declarations[ctor].parameters
-          .map((p) => p.type)
-          .toList();
-    }
-    return ctors.map(parameters).toList();
-  }
-  final modelCtorSignatures = signatures(modelClass, modelConstructors);
-  final implCtorSignatures = signatures(implClass, implemConstructors);
+  final modelCtorSignatures = _signatures(modelClass, modelConstructors);
+  final implCtorSignatures = _signatures(implClass, implemConstructors);
   if (!_SIG_EQUALITY.equals(modelCtorSignatures, implCtorSignatures)) {
     throw new ArgumentError("the two lists of constructors don't match");
   }
-  final modelMethodSignatures = signatures(modelClass, methodsToTest);
-  final implMethodSignatures = signatures(implClass, methodsToTest);
+
+  final modelMethodSignatures = _signatures(modelClass, methodsToTest);
+  final implMethodSignatures = _signatures(implClass, methodsToTest);
   if (!_SIG_EQUALITY.equals(modelMethodSignatures, implMethodSignatures)) {
     throw new ArgumentError("the signatures of the methods don't match");
   }
