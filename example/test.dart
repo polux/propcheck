@@ -68,6 +68,11 @@ class Stack<A> {
 }
 
 main() {
-  new SmallCheck(depth: 6).check(implementationMatchesModel(
-      Model, [#Model], (new Stack<int>()).runtimeType, [#Stack], [#push, #pop, #peek]));
+  new SmallCheck(depth: 6).check(
+      implementationMatchesModel(
+          Model, 
+          [#Model], 
+          (new Stack<int>()).runtimeType, // because Stack<int> is not a valid type literal
+          [#Stack], 
+          [#push, #pop, #peek]));
 }
