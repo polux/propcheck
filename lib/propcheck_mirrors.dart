@@ -62,8 +62,7 @@ class _ConstructorCall {
   toString() => "Constructor_${index}(${arguments.join(',')})";
 
   Object eval(ClassMirror classMirror, List<Symbol> constructors) {
-    // TODO(polux): remove this hack when newInstance is consistent with
-    // ClassMirror#declarations.
+    // TODO(polux): remove this hack once www.dartbug.com/11161 is fixed
     final ctorName = MirrorSystem.getName(constructors[index]);
     final dotIndex = ctorName.indexOf('.');
     final suffix = (dotIndex < 0) ? '' : ctorName.substring(dotIndex + 1);
