@@ -7,7 +7,7 @@ environment:
   sdk: '>=0.8.10+6 <2.0.0'
 documentation: http://www.dartdocs.org/documentation/propcheck/0.5.0/index.html#propcheck
 dependencies:
-  enumerators: '>=0.5.3 <0.6.0'
+  enumerators: '>=0.5.5 <0.6.0'
 dev_dependencies:
-  collection: '>=0.9.3 <0.10.0'
-  unittest: '>=0.9.0 <0.10.0'
+  collection: '>=0.9.3 <1.2.0'
+  unittest: '>=0.9.0 <0.12.0'

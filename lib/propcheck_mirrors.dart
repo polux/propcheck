@@ -6,6 +6,7 @@
 library propcheck_mirrors;
 
 import 'dart:mirrors';
+import 'package:collection/equality.dart';
 import 'package:enumerators/enumerators.dart' as enumerators;
 import 'package:enumerators/combinators.dart' as combinators;
 import 'package:propcheck/propcheck.dart';
@@ -40,7 +41,8 @@ enumerators.Enumeration enumerationForTypeMirror(TypeMirror typeMirror) {
           enumerationForTypeMirror(typeMirror.typeArguments[1]));
     }
   }
-  throw new ArgumentError("cannot generate an enumeration for $typeMirror");
+  final name = MirrorSystem.getName(typeMirror.qualifiedName);
+  throw new ArgumentError("cannot generate an enumeration for $name");
 }
 
 Property property(Function f) {
@@ -49,4 +51,168 @@ Property property(Function f) {
       .map((parameter) => enumerationForTypeMirror(parameter.type))
       .toList();
   return forallN(enumerations, (args) => closureMirror.apply(args).reflectee);
+}
+
+class _ConstructorCall {
+  final int index;
+  final List arguments;
+
+  _ConstructorCall(this.index, this.arguments);
+
+  toString() => "Constructor_${index}(${arguments.join(',')})";
+
+  Object eval(ClassMirror classMirror, List<Symbol> constructors) {
+    // TODO(polux): remove this hack when newInstance is consistent with
+    // ClassMirror#declarations.
+    final ctorName = MirrorSystem.getName(constructors[index]);
+    final dotIndex = ctorName.indexOf('.');
+    final suffix = (dotIndex < 0) ? '' : ctorName.substring(dotIndex + 1);
+    final ctorSymbol = MirrorSystem.getSymbol(suffix);
+    return classMirror.newInstance(ctorSymbol, arguments).reflectee;
+  }
+}
+
+class _MethodCall {
+  final Symbol methodName;
+  final List arguments;  // null means getter
+
+  _MethodCall(this.methodName, this.arguments);
+
+  toString() {
+    final readableName = MirrorSystem.getName(methodName);
+    return "${readableName}(${arguments.join(',')})";
+  }
+
+  Object eval(Object receiver) {
+    return reflect(receiver).invoke(methodName, arguments).reflectee;
+  }
+}
+
+class _Program {
+  final _ConstructorCall constructorCall;
+  final List<_MethodCall> methodCalls;
+
+  _Program(this.constructorCall, this.methodCalls);
+
+  List<_Result> eval(ClassMirror classMirror, List<Symbol> constructors) {
+    try {
+      final receiver = constructorCall.eval(classMirror, constructors);
+      final trace = [];
+      for (final methodCall in methodCalls) {
+        var result = null;
+        try {
+          result = new _Value(methodCall.eval(receiver));
+        } catch(e) {
+          result = new _Issue(e);
+        }
+        trace.add(result);
+      }
+      return trace;
+    } catch(e) {
+      return [new _Issue(e)];
+    }
+  }
+
+  toString() => ([constructorCall]..addAll(methodCalls)).toString();
+}
+
+abstract class _Result {}
+
+class _Value implements _Result {
+  final Object value;
+
+  _Value(this.value);
+
+  String toString() {
+    return 'Value($value)';
+  }
+
+  bool operator ==(other) {
+    return (other is _Value)
+        && (value == other.value);
+  }
+}
+
+class _Issue implements _Result {
+  final Error error;
+
+  _Issue(this.error);
+
+  String toString() {
+    return 'Issue($error)';
+  }
+
+  bool operator ==(other) {
+    return (other is _Issue)
+        && (error.toString() == other.error.toString());
+  }
+}
+
+enumerators.Enumeration<List> _enumerationForSignature(List<Type> signature) {
+  return combinators.productsOf(signature
+      .map((parameter) => enumerationForTypeMirror(parameter))
+      .toList());
+}
+
+const _SIG_EQUALITY = const ListEquality(const ListEquality());
+const _TRACE_EQUALITY = const ListEquality();
+
+Property implementationMatchesModel(Type model,
+                                    List<Symbol> modelConstructors,
+                                    Type implem,
+                                    List<Symbol> implemConstructors,
+                                    List<Symbol> methodsToTest) {
+  ClassMirror modelClass = reflectClass(model);
+  ClassMirror implClass = reflectClass(implem);
+
+  List<List<Type>> signatures(classMirror, ctors) {
+    List<Type> parameters(ctor) {
+      return classMirror.declarations[ctor].parameters
+          .map((p) => p.type)
+          .toList();
+    }
+    return ctors.map(parameters).toList();
+  }
+  final modelCtorSignatures = signatures(modelClass, modelConstructors);
+  final implCtorSignatures = signatures(implClass, implemConstructors);
+  if (!_SIG_EQUALITY.equals(modelCtorSignatures, implCtorSignatures)) {
+    throw new ArgumentError("the two lists of constructors don't match");
+  }
+  final modelMethodSignatures = signatures(modelClass, methodsToTest);
+  final implMethodSignatures = signatures(implClass, methodsToTest);
+  if (!_SIG_EQUALITY.equals(modelMethodSignatures, implMethodSignatures)) {
+    throw new ArgumentError("the signatures of the methods don't match");
+  }
+
+  enumerators.Enumeration<_ConstructorCall> ctorCalls = enumerators.empty();
+  for (int i = 0; i < modelCtorSignatures.length; i++) {
+    ctorCalls += enumerators.apply(
+        (args) => new _ConstructorCall(i, args),
+        _enumerationForSignature(modelCtorSignatures[i]));
+  }
+
+  enumerators.Enumeration<_ConstructorCall> methodCalls = enumerators.empty();
+  for (int i = 0; i < methodsToTest.length; i++) {
+    methodCalls += enumerators.apply(
+        (args) => new _MethodCall(methodsToTest[i], args),
+        _enumerationForSignature(modelMethodSignatures[i]));
+  }
+
+  enumerators.Enumeration<_Program> programs =
+      enumerators.apply(
+          (ctorCall, methodCalls) => new _Program(ctorCall, methodCalls),
+          ctorCalls,
+          combinators.listsOf(methodCalls));
+
+  return forall(programs, (program) {
+    final modelTrace = program.eval(modelClass, modelConstructors);
+    final implTrace = program.eval(implClass, implemConstructors);
+    if (_TRACE_EQUALITY.equals(modelTrace, implTrace)) {
+      return true;
+    } else {
+      print("model trace: $modelTrace");
+      print("implem trace: $implTrace");
+      return false;
+    }
+  });
 }
