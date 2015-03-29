@@ -20,7 +20,7 @@ bool bad(List<bool> xs, List<bool> ys) =>
 
 main() {
   // 'good' and 'bad' are converted to properties by reflection on the declared
-  // typed of their parameters
+  // types of their parameters
   Property goodProperty = property(good);
   Property badProperty = property(bad);
 
