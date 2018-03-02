@@ -18,23 +18,23 @@ class Property {
   Property(this.enumeration, this.property);
 }
 
-Property forall(Enumeration enumeration, bool property(x)) =>
+Property forall<A>(Enumeration<A> enumeration, bool property(A x)) =>
     new Property(productsOf([enumeration]),
                  (tuple) => property(tuple[0]));
 
-Property forall2(Enumeration enumeration1, Enumeration enumeration2,
-                 bool property(x, y)) =>
+Property forall2<A,B>(Enumeration<A> enumeration1, Enumeration<B> enumeration2,
+                 bool property(A x, B y)) =>
     new Property(productsOf([enumeration1, enumeration2]),
                  (tuple) => property(tuple[0], tuple[1]));
 
-Property forall3(Enumeration enumeration1, Enumeration enumeration2,
-                 Enumeration enumeration3, bool property(x, y, z)) =>
+Property forall3<A,B,C>(Enumeration<A> enumeration1, Enumeration<B> enumeration2,
+                 Enumeration<C> enumeration3, bool property(A x, B y, C z)) =>
     new Property(productsOf([enumeration1, enumeration2, enumeration3]),
                  (tuple) => property(tuple[0], tuple[1], tuple[2]));
 
-Property forall4(Enumeration enumeration1, Enumeration enumeration2,
-                 Enumeration enumeration3, Enumeration enumeration4,
-                 bool property(x, y, z, w)) =>
+Property forall4<A,B,C,D>(Enumeration<A> enumeration1, Enumeration<B> enumeration2,
+                 Enumeration<C> enumeration3, Enumeration<D> enumeration4,
+                 bool property(A x, B y, C z, D w)) =>
     new Property(productsOf([enumeration1, enumeration2, enumeration3,
                              enumeration4]),
                  (tuple) => property(tuple[0], tuple[1], tuple[2], tuple[3]));
@@ -47,7 +47,7 @@ abstract class Check {
 
   Check(this.quiet);
 
-  check(Property);
+  void check(Property property);
 
   void display(String message) {
     if (!quiet) {

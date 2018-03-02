@@ -1,4 +1,7 @@
 .project
+.idea
+.packages
+propcheck.iml
 example/packages
 packages/
 pubspec.lock
