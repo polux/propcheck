@@ -93,7 +93,7 @@ FAIL: quickcheck bad
 ```
 git clone https://github.com/polux/propcheck
 cd propcheck
-pub install
+pub get
 dart example/demo.dart
 ```
 
