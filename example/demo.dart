@@ -8,7 +8,7 @@ library demo;
 import 'demolib.dart';
 import 'package:propcheck/propcheck.dart';
 import 'package:enumerators/combinators.dart' as c;
-import 'package:unittest/unittest.dart' hide equals;
+import 'package:test/test.dart' hide equals;
 
 /* --- the properties to test --- */
 
@@ -37,7 +37,18 @@ main() {
   group('smallcheck', () {
     final sc = new SmallCheck(depth: 10);
     test('good', () => sc.check(goodProperty));
-    test('bad', () => sc.check(badProperty));
+
+    test('bad', () {
+      try {
+        sc.check(badProperty);
+      } catch (exception) {
+        expect(exception.toString(), equalsIgnoringWhitespace(
+            'falsified after 11 tests\n'
+            '  argument 1: [true]\n'
+            '  argument 2: [false]\n'
+            ''));
+      }
+    });
   });
 
   // we test the properties against random pairs of lists of bools of
@@ -45,6 +56,17 @@ main() {
   group('quickcheck', () {
     final qc = new QuickCheck(maxSize: 300, seed: 42);
     test('good', () => qc.check(goodProperty));
-    test('bad', () => qc.check(badProperty));
+
+    test('bad', () {
+      try {
+        qc.check(badProperty);
+      } catch(exception) {
+        expect(exception.toString(), equalsIgnoringWhitespace(
+            'falsified after 6 tests\n'
+                '  argument 1: [true, false, true]\n'
+                '  argument 2: [true, true]\n'
+                ''));
+      }
+    });
   });
 }
