@@ -23,7 +23,7 @@ void falseTriggersException() {
     return false;
   }
   expect(() => new QuickCheck(quiet: true).check(forall(c.ints, test)),
-         throwsA(new isInstanceOf<String>()));
+         throwsA(const TypeMatcher<String>()));
 }
 
 void quickCheckHonorsMaxSize() {

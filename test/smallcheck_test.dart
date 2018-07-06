@@ -22,7 +22,7 @@ void falseTriggersException() {
     return false;
   }
   expect(() => new SmallCheck(quiet: true).check(forall(c.ints, test)),
-         throwsA(new isInstanceOf<String>()));
+         throwsA(const TypeMatcher<String>()));
 }
 
 void smallCheckIsExhaustive() {
