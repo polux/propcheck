@@ -8,5 +8,5 @@ environment:
 dependencies:
   enumerators: '>=0.6.0 <0.7.0'
 dev_dependencies:
-  collection: '>=0.9.3 <0.10.0'
+  collection: '>=0.9.3 <1.15.0'
   unittest: '>=0.9.0 <0.10.0'
