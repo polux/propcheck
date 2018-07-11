@@ -6,7 +6,7 @@
 import 'package:propcheck/propcheck_mirrors.dart';
 import 'package:enumerators/combinators.dart' as c;
 import 'package:enumerators/enumerators.dart' as e;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 bool boolArgument(bool x) => true;
 bool intArgument(int x) => true;

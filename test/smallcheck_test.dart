@@ -5,7 +5,7 @@
 
 import 'package:propcheck/propcheck.dart';
 import 'package:enumerators/combinators.dart' as c;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 void smallCheckPerformsCheck() {
   bool called = false;
@@ -22,7 +22,7 @@ void falseTriggersException() {
     return false;
   }
   expect(() => new SmallCheck(quiet: true).check(forall(c.ints, test)),
-         throwsA(new isInstanceOf<String>()));
+         throwsA(const TypeMatcher<String>()));
 }
 
 void smallCheckIsExhaustive() {

@@ -6,7 +6,7 @@
 import 'package:propcheck/propcheck.dart';
 import 'package:enumerators/combinators.dart' as c;
 import 'package:enumerators/enumerators.dart' as e;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 void quickCheckPerformsCheck() {
   bool called = false;
@@ -23,7 +23,7 @@ void falseTriggersException() {
     return false;
   }
   expect(() => new QuickCheck(quiet: true).check(forall(c.ints, test)),
-         throwsA(new isInstanceOf<String>()));
+         throwsA(const TypeMatcher<String>()));
 }
 
 void quickCheckHonorsMaxSize() {
