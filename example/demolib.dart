@@ -5,7 +5,7 @@
 
 library demolib;
 
-import 'package:collection/equality.dart';
+import 'package:collection/collection.dart';
 
 bool listEquals(List xs, List ys) => const ListEquality().equals(xs, ys);
 List reverse(List xs) => xs.reversed.toList();
