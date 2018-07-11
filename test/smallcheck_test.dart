@@ -5,7 +5,7 @@
 
 import 'package:propcheck/propcheck.dart';
 import 'package:enumerators/combinators.dart' as c;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 void smallCheckPerformsCheck() {
   bool called = false;

@@ -6,7 +6,7 @@
 import 'package:propcheck/propcheck.dart';
 import 'package:enumerators/combinators.dart' as c;
 import 'package:enumerators/enumerators.dart' as e;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 void quickCheckPerformsCheck() {
   bool called = false;

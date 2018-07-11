@@ -2,7 +2,7 @@ library mirrors_demo;
 
 import 'demolib.dart';
 import 'package:propcheck/propcheck_mirrors.dart';
-import 'package:unittest/unittest.dart' hide equals;
+import 'package:test/test.dart' hide equals;
 
 /* --- the properties to test --- */
 
