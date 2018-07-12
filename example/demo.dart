@@ -8,7 +8,7 @@ library demo;
 import 'demolib.dart';
 import 'package:propcheck/propcheck.dart';
 import 'package:enumerators/combinators.dart' as c;
-import 'package:unittest/unittest.dart' hide equals;
+import 'package:test/test.dart' hide equals;
 
 /* --- the properties to test --- */
 
@@ -37,6 +37,7 @@ main() {
   group('smallcheck', () {
     final sc = new SmallCheck(depth: 10);
     test('good', () => sc.check(goodProperty));
+
     test('bad', () => sc.check(badProperty));
   });
 
@@ -45,6 +46,7 @@ main() {
   group('quickcheck', () {
     final qc = new QuickCheck(maxSize: 300, seed: 42);
     test('good', () => qc.check(goodProperty));
+
     test('bad', () => qc.check(badProperty));
   });
 }

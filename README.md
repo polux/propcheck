@@ -20,7 +20,7 @@ The only documentation so far is this README and the
 import 'dart:collection';
 import 'package:propcheck/propcheck.dart';
 import 'package:enumerators/combinators.dart' as c;
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 
 // defines append and reverse
 part 'demolib.dart';
